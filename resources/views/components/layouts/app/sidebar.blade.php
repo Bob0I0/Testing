@@ -7,15 +7,33 @@
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
             <div class="text-center mb-0.5">
-                <img src="{{ asset('images/LOGO-PMI-png-1 2.png') }}" alt="Logo" class="mx-auto mb-0.5 rounded-xl" style="width: 210px; height: 142px; object-fit: contain;">
-                <hr class="mt-1 mb-0 border-zinc-300 dark:border-zinc-600 w-7/8 mx-auto">
+                <div class="mx-auto mb-0.5 rounded-xl  bg-white white:bg-zinc-700" style="width: 200px; height: 132px; display: flex; align-items: center; justify-content: center;">
+                    <img src="{{ asset('images/LOGO-PMI-png-1 2.png') }}" alt="Logo" style="width: 190px; height: 122px; object-fit: contain;">
+                </div>
+                <flux:separator class="my-2"/>
+                <!-- <hr class="mt-3 mb-0 border-zinc-300 dark:border-zinc-600 w-7/8 mx-auto"> -->
             </div>
 
-            <flux:navlist variant="outline">
-                <flux:navlist.group class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+            <flux:navlist class="w-52">
+                <flux:navlist.item class="my-1" href="/dashboard" icon="home">Dashboard</flux:navlist.item>
+                <!-- <flux:separator class="my-1"/> -->
+                <flux:navlist.group class="my-1" icon="window" heading="Transaksi Surat" expandable :expanded="false">
+                    <flux:navlist.item href="#">Masuk</flux:navlist.item>
+                    <flux:navlist.item href="#">Keluar</flux:navlist.item>
                 </flux:navlist.group>
+                <!-- <flux:separator class="my-1"/> -->
+                <flux:navlist.group class="my-1" icon="document" heading="Buku Agenda" expandable :expanded="false">
+                    <flux:navlist.item href="#">Masuk</flux:navlist.item>
+                    <flux:navlist.item href="#">Keluar</flux:navlist.item>
+                </flux:navlist.group>
+                <!-- <flux:separator class="my-1"/> -->
+                <flux:navlist.group class="my-1" icon="envelope" heading="Surat" expandable :expanded="false">
+                    <flux:navlist.item href="#">peminjaman</flux:navlist.item>
+                    <flux:navlist.item href="#">pengeluaran</flux:navlist.item>
+                </flux:navlist.group>
+                <!-- <flux:separator class="my-1"/> -->
+                <flux:navlist.item href="#" icon="user-group">Kelola Pengguna</flux:navlist.item>
+                <flux:separator class="my-3"/>
             </flux:navlist>
 
             <flux:spacer />
@@ -74,14 +92,14 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
         <flux:header class="lg:hidden">
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-
             <flux:spacer />
-
+            <x-searchbar />
             <flux:dropdown position="top" align="end">
                 <flux:profile
                     :initials="auth()->user()->initials()"
@@ -125,7 +143,10 @@
                 </flux:menu>
             </flux:dropdown>
         </flux:header>
-
+        <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-white dark:bg-zinc-800">
+            <x-searchbar />
+        </div>
+        
         {{ $slot }}
 
         @fluxScripts
