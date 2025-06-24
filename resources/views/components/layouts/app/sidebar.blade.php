@@ -12,29 +12,25 @@
                 <!-- </div> -->
                 <flux:separator class="my-0"/>
             </div>
-            <flux:navlist class="w-56">
+            <flux:navlist class="w-55">
                 <flux:navlist.item href="/dashboard" icon="home">Dashboard</flux:navlist.item>
                 <flux:separator class="my-1"/>
-                <flux:navlist.group class="my-1" icon="window" heading="Transaksi Surat" expandable :expanded="false">
-                    <flux:navlist.item href="#" icon="dot" :dot-icon="true" :active="request()->routeIs('surat-masuk')"> 
-                        <span class="ms-0">Surat Masuk</span> 
-                    </flux:navlist.item>
-                    <flux:navlist.item href="#" icon="dot" :dot-icon="true" :active="request()->routeIs('surat-keluar')">
-                        <span class="ms-0">Surat Keluar</span> 
-                    </flux:navlist.item>
+                <flux:navlist.group class="my-1" icon="window" heading="Transaksi Surat" expandable :expanded="request()->routeIs('suratmasuk') || request()->routeIs('suratkeluar')">
+                    <flux:navlist.item href="/suratmasuk" icon="dot" :dot-icon="true">Surat Masuk</flux:navlist.item> 
+                    <flux:navlist.item href="/suratkeluar" icon="dot" :dot-icon="true">Surat Keluar</flux:navlist.item>
                 </flux:navlist.group>
                 <flux:separator class="my-1"/>
-                <flux:navlist.group class="my-1" icon="document" heading="Buku Agenda" expandable :expanded="false">
-                    <flux:navlist.item icon="dot" href="#">Masuk</flux:navlist.item>
-                    <flux:navlist.item icon="dot" href="#">Keluar</flux:navlist.item>
+                <flux:navlist.group class="my-1" icon="document" heading="Buku Agenda" expandable :expanded="request()->routeIs('agendamasuk') || request()->routeIs('agendakeluar')">
+                    <flux:navlist.item href="/agendamasuk" icon="dot" :dot-icon="true">Masuk</flux:navlist.item>
+                    <flux:navlist.item href="/agendakeluar" icon="dot" :dot-icon="true">Keluar</flux:navlist.item>
                 </flux:navlist.group>
                 <flux:separator class="my-1"/>
-                <flux:navlist.group class="my-1" icon="envelope" heading="Surat" expandable :expanded="false">
-                    <flux:navlist.item icon="dot" href="#">peminjaman</flux:navlist.item>
-                    <flux:navlist.item icon="dot" href="#">pengeluaran</flux:navlist.item>
+                <flux:navlist.group class="my-1" icon="envelope" heading="Surat" expandable :expanded="request()->routeIs('peminjaman') || request()->routeIs('pengembalian')">
+                    <flux:navlist.item href="/peminjaman" icon="dot" :dot-icon="true">Peminjaman</flux:navlist.item>
+                    <flux:navlist.item href="/pengembalian" icon="dot" :dot-icon="true">Pengembalian</flux:navlist.item>
                 </flux:navlist.group>
                 <flux:separator class="my-1"/>
-                <flux:navlist.item href="#" icon="user-group">Kelola Pengguna</flux:navlist.item>
+                <flux:navlist.item href="/kelola" icon="user-group">Kelola Pengguna</flux:navlist.item>
                 <flux:separator class="my-2"/>
             </flux:navlist>
 
