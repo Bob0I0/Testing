@@ -6,34 +6,36 @@
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
-            <div class="text-center mb-0.5">
-                <div class="mx-auto mb-0.5 rounded-xl  bg-white white:bg-zinc-700" style="width: 200px; height: 132px; display: flex; align-items: center; justify-content: center;">
-                    <img src="{{ asset('images/LOGO-PMI-png-1 2.png') }}" alt="Logo" style="width: 190px; height: 122px; object-fit: contain;">
-                </div>
-                <flux:separator class="my-2"/>
-                <!-- <hr class="mt-3 mb-0 border-zinc-300 dark:border-zinc-600 w-7/8 mx-auto"> -->
+            <div class="text-center ">
+                <!-- <div class="mx-auto rounded-xl  bg-white white:bg-zinc-700" style="width: 200px; height: 112px; display: flex; align-items: center; justify-content: center;"> -->
+                    <img src="{{ asset('images/LOGO-PMI-png-1 2.png') }}" alt="Logo" style="width: 190px; height: 132px; object-fit: contain;">
+                <!-- </div> -->
+                <flux:separator class="my-0"/>
             </div>
-
-            <flux:navlist class="w-52">
-                <flux:navlist.item class="my-1" href="/dashboard" icon="home">Dashboard</flux:navlist.item>
-                <!-- <flux:separator class="my-1"/> -->
+            <flux:navlist class="w-56">
+                <flux:navlist.item href="/dashboard" icon="home">Dashboard</flux:navlist.item>
+                <flux:separator class="my-1"/>
                 <flux:navlist.group class="my-1" icon="window" heading="Transaksi Surat" expandable :expanded="false">
-                    <flux:navlist.item href="#">Masuk</flux:navlist.item>
-                    <flux:navlist.item href="#">Keluar</flux:navlist.item>
+                    <flux:navlist.item href="#" icon="dot" :dot-icon="true" :active="request()->routeIs('surat-masuk')"> 
+                        <span class="ms-0">Surat Masuk</span> 
+                    </flux:navlist.item>
+                    <flux:navlist.item href="#" icon="dot" :dot-icon="true" :active="request()->routeIs('surat-keluar')">
+                        <span class="ms-0">Surat Keluar</span> 
+                    </flux:navlist.item>
                 </flux:navlist.group>
-                <!-- <flux:separator class="my-1"/> -->
+                <flux:separator class="my-1"/>
                 <flux:navlist.group class="my-1" icon="document" heading="Buku Agenda" expandable :expanded="false">
-                    <flux:navlist.item href="#">Masuk</flux:navlist.item>
-                    <flux:navlist.item href="#">Keluar</flux:navlist.item>
+                    <flux:navlist.item icon="dot" href="#">Masuk</flux:navlist.item>
+                    <flux:navlist.item icon="dot" href="#">Keluar</flux:navlist.item>
                 </flux:navlist.group>
-                <!-- <flux:separator class="my-1"/> -->
+                <flux:separator class="my-1"/>
                 <flux:navlist.group class="my-1" icon="envelope" heading="Surat" expandable :expanded="false">
-                    <flux:navlist.item href="#">peminjaman</flux:navlist.item>
-                    <flux:navlist.item href="#">pengeluaran</flux:navlist.item>
+                    <flux:navlist.item icon="dot" href="#">peminjaman</flux:navlist.item>
+                    <flux:navlist.item icon="dot" href="#">pengeluaran</flux:navlist.item>
                 </flux:navlist.group>
-                <!-- <flux:separator class="my-1"/> -->
+                <flux:separator class="my-1"/>
                 <flux:navlist.item href="#" icon="user-group">Kelola Pengguna</flux:navlist.item>
-                <flux:separator class="my-3"/>
+                <flux:separator class="my-2"/>
             </flux:navlist>
 
             <flux:spacer />

@@ -27,9 +27,9 @@
         </div>
     </button>
 
-    <div class="relative hidden space-y-[2px] ps-7 data-open:block" @if ($expanded === true) data-open @endif>
-        <div class="absolute inset-y-[3px] start-0 ms-4 w-px bg-zinc-200 dark:bg-white/30"></div>
-
+    <div class="relative hidden space-y-[2px] data-open:block" @if ($expanded === true) data-open @endif>
+        <div class="absolute start-0 top-[1.2rem] ms-4 flex items-center justify-center">
+        </div>
         {{ $slot }}
     </div>
 </ui-disclosure>
