@@ -11,7 +11,6 @@
     {{ $attributes->class('group/disclosure') }}
     @if ($expanded === true) open @endif
     data-flux-navlist-group
-    
 >
     <button
         type="button"

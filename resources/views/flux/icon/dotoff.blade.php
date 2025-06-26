@@ -9,20 +9,18 @@
     'micro' => '[:where(&)]:size-4',
   });
 @endphp
-
 <svg
   {{ $attributes->class($classes) }}
-
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
+  width="7"
+  height="7"
+  viewBox="0 0 7 7"
   fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  aria-hidden="true"
-  data-slot="icon"
+  xmlns="http://www.w3.org/2000/svg"
 >
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <circle cx="12" cy="12" r="4"/>
+  <circle
+    cx="3.5"
+    cy="3.5"
+    r="2"
+    fill="#D8D8D8"
+  />
 </svg>
