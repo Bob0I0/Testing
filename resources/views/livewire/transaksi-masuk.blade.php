@@ -1,4 +1,4 @@
-<div class="overflow-x-auto">
+<div class="overflow-x-auto bg-white dark:bg-zinc-800 p-4 rounded-lg shadow-md">
     <flux:modal.trigger name="add-file">
         <flux:button variant="danger">Tambah Data</flux:button>
     </flux:modal.trigger>
@@ -14,12 +14,11 @@
             <flux:textarea rows="2" label="Perihal" placeholder="Isi Perihal" />
             <div class="grid grid-cols-2 gap-4">
                 <flux:input type="date" max="2999-12-31" label="Tanggal Masuk" />
-                <flux:input label="Jenis Surat" placeholder="Surat" />
+                <flux:input label="Jenis Surat" placeholder="Jenis Surat" />
             </div>
-            <flux:input type="file" wire:model="UploadFile" label="Upload file" multiple />
-
+            <flux:input type="file" wire:model="UploadFile" label="Upload file" class="border rounded-md" />
             {{--
-            <flux:select label="Jenis Surat" placeholder="Pilih Jenis Surat" wire:model="jenisSurat">
+            <flux:select label="Jenis Surat" placeholder="Jenis Surat" wire:model="jenisSurat">
                 <option value="">Pilih Jenis Surat</option>
                 @foreach($jenisSuratList as $jenis)
                     <option value="{{ $jenis }}">{{ $jenis }}</option>
@@ -36,7 +35,7 @@
 
             <div class="flex">
                 <flux:spacer />
-                <flux:button type="submit" variant="danger">Simpan</flux:button>
+                <flux:button type="submit" variant="primary" color="green">Simpan</flux:button>
             </div>
         </div>
     </flux:modal>
@@ -67,7 +66,7 @@
                     <flux:button.group>
                         <flux:button href="#" icon="edit" variant="subtle"></flux:button>
                         <flux:button href="#" icon="trash" variant="subtle"></flux:button>
-                        <flux:button href="#" icon="print" variant="subtle"></flux:button>
+                        <flux:button href="#" icon="receive" variant="subtle"></flux:button>
                     </flux:button.group>
                 </td>
             </tr>
@@ -85,7 +84,7 @@
                     <flux:button.group>
                         <flux:button href="#" icon="edit" variant="subtle"></flux:button>
                         <flux:button href="#" icon="trash" variant="subtle"></flux:button>
-                        <flux:button href="#" icon="print" variant="subtle"></flux:button>
+                        <flux:button href="#" icon="receive" variant="subtle"></flux:button>
                     </flux:button.group>
                 </td>
             </tr>

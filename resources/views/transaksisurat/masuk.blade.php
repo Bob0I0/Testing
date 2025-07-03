@@ -6,7 +6,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+            <div class="rounded-xl border border-neutral-200 bg-white dark:bg-zinc-800 p-4 shadow-sm">
                 <div class="grid grid-cols-3 items-end gap-4">
                     <div class="flex items-center gap-2">
                         <label for="tanggal_awal" class="w-28 font-medium">Tanggal Awal</label>
@@ -28,13 +28,8 @@
         </div>
     </div>
     <div class="my-6"></div>
-    <div class="card flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="card-header">
-            <div class="grid auto-rows-min gap-4">
-                <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
-                    <livewire:transaksi-masuk />
-                </div>
-            </div>
+            <livewire:transaksi-masuk />
         </div>
     </div>
 </x-layouts.app>

@@ -3,8 +3,8 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <body class="min-h-screen bg-[#F6F5FA] dark:bg-zinc-800">
+        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
             <div class="text-center ">
                 <img src="{{ asset('images/LOGO-PMI-png-1 2.png') }}" alt="Logo" style="width: 190px; height: 132px; object-fit: contain;">
@@ -120,12 +120,12 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
             <x:searchbar />
         </flux:header>
-        <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-white dark:bg-zinc-800">
+        <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-[#F6F5FA] dark:bg-zinc-800">
             <x:searchbar />
         </div>
         
         {{ $slot }}
-        `<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         @fluxScripts
     </body>
 </html>
