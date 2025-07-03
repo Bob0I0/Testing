@@ -31,24 +31,6 @@
                         Surat Keluar
                     </flux:navlist.item>
                 </flux:navlist.group>
-                <flux:separator class="my-1"/>
-                
-                <flux:navlist.group class="my-1" icon="doc" heading="Buku Agenda" expandable :expanded="request()->routeIs('agendamasuk') || request()->routeIs('agendakeluar')">
-                    <flux:navlist.item
-                        href="/agendamasuk"
-                        :icon="request()->routeIs('agendamasuk') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Masuk
-                    </flux:navlist.item>
-                    <flux:navlist.item
-                        href="/agendakeluar"
-                        :icon="request()->routeIs('agendakeluar') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Keluar
-                    </flux:navlist.item>
-                </flux:navlist.group>
                 
                 <flux:separator class="my-1"/>
                 <flux:navlist.group class="my-1" icon="sms" heading="Surat" expandable :expanded="request()->routeIs('peminjaman') || request()->routeIs('pengembalian')">
@@ -143,7 +125,7 @@
         </div>
         
         {{ $slot }}
-
+        `<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
         @fluxScripts
     </body>
 </html>
