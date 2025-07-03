@@ -4,10 +4,37 @@
             <strong>{{ __('Data Surat Masuk') }}</strong>
         </flux:heading>
     </div>
+    <div class="card">
+        <div class="card-header">
+            <div class="rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+                <div class="grid grid-cols-3 items-end gap-4">
+                    <div class="flex items-center gap-2">
+                        <label for="tanggal_awal" class="w-28 font-medium">Tanggal Awal</label>
+                        <flux:input id="tanggal_awal" type="date" max="2999-12-31" label="" />
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="tanggal_akhir" class="w-28 font-medium">Tanggal Akhir</label>
+                        <flux:input id="tanggal_akhir" type="date" max="2999-12-31" label="" />
+                    </div>
+                    <div class="flex justify-end">
+                        <flux:button variant="danger" wire:click="$emit('openModal', 'transaksi-masuk')">
+                            <span class="flex justify-center">
+                                <span>{{ __('Cari Surat') }}</span>
+                            </span>
+                        </flux:button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-6"></div>
     <div class="card flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="card-header">
             <div class="grid auto-rows-min gap-4">
                 <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
-                    <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-    
+                    <livewire:transaksi-masuk />
+                </div>
+            </div>
+        </div>
+    </div>
 </x-layouts.app>
