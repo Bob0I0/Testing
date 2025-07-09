@@ -8,7 +8,7 @@
                   avatar:badge:circle 
                   :initials="auth()->user()->initials()"
                   class="h-8 w-8" 
-                  avatar:color="red"
+                  avatar:color="cyan"
                   />
       <flux:menu class="max-w-[12rem]">
         <flux:menu.radio.group>      
@@ -18,6 +18,9 @@
           </div>
           <flux:menu.separator />
         </flux:menu.radio.group>  
+        <flux:menu.radio.group>
+          <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+        </flux:menu.radio.group>
         
         <flux:menu.radio.group>  
           <form method="POST" action="{{ route('logout') }}" class="w-full">

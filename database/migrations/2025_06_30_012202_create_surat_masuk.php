@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nomor_surat');
             $table->string('asal_surat');
             $table->date('tanggal_surat');
-            $table->text('isi');
+            $table->text('perihal');
             $table->string('file');
             $table->string('jenis_surat');
             $table->timestamps();

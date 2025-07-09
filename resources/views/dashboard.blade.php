@@ -1,7 +1,7 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="card flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="card-header">
-            <div class="grid gap-8 md:grid-cols-3 items-stretch bg-[#F6F5FA] dark:bg-zinc-800">
+            <div class="grid gap-8 md:grid-cols-3 items-stretch bg-[#EEF9F9] dark:bg-zinc-800">
                 <div class="relative overflow-hidden rounded-xl shadow-sm border border-neutral-200 bg-white dark:border-neutral-700 flex flex-col justify-between p-4 md:col-span-2">
                     <div class="flex items-center justify-between h-75">
                         <div class="flex flex-col justify-start h-full">

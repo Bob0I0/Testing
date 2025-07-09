@@ -11,7 +11,7 @@
 
             <flux:input label="Nomor Surat" placeholder="XXX/AA/UDDPNK/MM/YYYY" />
             <flux:input label="Asal Surat" placeholder="Instansi" />
-            <flux:textarea rows="2" label="Perihal" placeholder="Isi Perihal" />
+            <flux:input rows="2" label="Perihal" placeholder="Isi Perihal" />
             <div class="grid grid-cols-2 gap-4">
                 <flux:input type="date" max="2999-12-31" label="Tanggal Masuk" />
                 <flux:input label="Jenis Surat" placeholder="Jenis Surat" />
@@ -70,24 +70,7 @@
                     </flux:button.group>
                 </td>
             </tr>
-            <tr>
-                <td class="border px-3 py-1 text-center">1</td>
-                <td class="border px-3 py-1">XXX/AA/UDDPNK/MM/YYYY</td>
-                <td class="border px-3 py-1">PTK</td>
-                <td class="border px-3 py-1">12/12/2025</td>
-                <td class="border px-3 py-1 break-words max-w-xs">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</td>
-                <td class="border px-3 py-1">
-                    <a href="#" target="_blank" class="text-blue-600 underline">Lihat File</a>
-                </td>
-                <td class="border px-3 py-1">surat masuk</td>
-                <td class="border px-3 py-1">
-                    <flux:button.group>
-                        <flux:button href="#" icon="edit" variant="subtle"></flux:button>
-                        <flux:button href="#" icon="trash" variant="subtle"></flux:button>
-                        <flux:button href="#" icon="receive" variant="subtle"></flux:button>
-                    </flux:button.group>
-                </td>
-            </tr>
+
         </tbody>
     </table>
 </div>

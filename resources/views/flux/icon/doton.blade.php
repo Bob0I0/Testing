@@ -22,7 +22,7 @@
     cx="3.5"
     cy="3.5"
     r="2"
-    fill="#FF3300"
+    fill="#0ABAB5"
   />
   <circle
     cx="3.5"

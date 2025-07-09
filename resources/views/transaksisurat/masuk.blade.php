@@ -14,7 +14,19 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <label for="tanggal_akhir" class="w-28 font-medium">Tanggal Akhir</label>
-                        <flux:input id="tanggal_akhir" type="date" max="2999-12-31" label="" />
+                        <flux:input icon:trailing="calendar" datepicker id="default-datepicker" type="text" 
+                        class="
+                        text-gray-900 
+                        text-sm 
+                        rounded-lg 
+                        focus:ring-blue-500 
+                        focus:border-blue-500 
+                        block 
+                        w-full ps-10 p-2.5 
+                        dark:placeholder-gray-400 
+                        dark:text-white 
+                        dark:focus:ring-blue-500 
+                        dark:focus:border-blue-500" placeholder="dd/mm/yyyy"/>
                     </div>
                     <div class="flex justify-end">
                         <flux:button variant="danger" wire:click="$emit('openModal', 'transaksi-masuk')">
@@ -24,6 +36,12 @@
                         </flux:button>
                     </div>
                 </div>
+                
+                
+
+                
+
+
             </div>
         </div>
     </div>

@@ -11,19 +11,12 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('/suratmasuk', 'transaksisurat.masuk')
+Route::view('/suratmasuk', 'livewire.surat-masuk.filter')
     ->middleware(['auth', 'verified'])
     ->name('suratmasuk');
-Route::view('/suratkeluar', 'transaksisurat.keluar')
+Route::view('/suratkeluar', 'livewire.surat-keluar.filter')
     ->middleware(['auth', 'verified'])
     ->name('suratkeluar');
-
-Route::view('/agendamasuk', 'bukuagenda.masuk')
-    ->middleware(['auth', 'verified'])
-    ->name('agendamasuk');
-Route::view('/agendakeluar', 'bukuagenda.keluar')
-    ->middleware(['auth', 'verified'])
-    ->name('agendakeluar');
 
 Route::view('/peminjaman', 'surat.peminjaman')
     ->middleware(['auth', 'verified'])
