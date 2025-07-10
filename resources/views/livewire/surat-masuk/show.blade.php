@@ -18,9 +18,10 @@
             </tr>
         </thead>
         <tbody>
+            @php $num = 1; @endphp
             @forelse ($suratMasuks as $surat)
                 <tr>
-                    <td class="border px-3 py-1 text-center">{{ $surat->id }}</td>
+                    <td class="border px-3 py-1 text-center">{{ $num++ }}</td>
                     <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->asal_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tanggal_surat }}</td>
@@ -49,7 +50,7 @@
             {{ $suratMasuks->links() }}
         </tbody>
     </table>
-    <flux:spacer></flux:spacer>
+    <flux:spacer />
     <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
         <li>

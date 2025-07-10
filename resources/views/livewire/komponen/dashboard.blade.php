@@ -50,8 +50,8 @@
                                 <flux:icon.boxreceive class="w-5 h-5" /> 
                             </div>
                             <div class="flex flex-col items-center justify-center mt-8">
-                                <h1 class="text-lg font-semibold text-center">{{ __('Surat Masuk') }}</h1>
-                                <p class="text-3xl font-bold text-center">{{ __('0') }}</p>
+                                <h1 class="text-lg font-semibold text-center">{{ 'Surat Masuk' }}</h1>
+                                <p class="text-3xl font-bold text-center">{{ '0' }}</p>
                             </div>
                         </div>
 
@@ -60,8 +60,8 @@
                                 <flux:icon.boxsend class="w-5 h-5" /> 
                             </div>
                             <div class="flex flex-col items-center justify-center mt-8">
-                                <h1 class="text-lg font-semibold text-center">{{ __('Surat Keluar') }}</h1>
-                                <p class="text-3xl font-bold text-center">{{ __('0') }}</p>
+                                <h1 class="text-lg font-semibold text-center">{{ 'Surat Keluar' }}</h1>
+                                <p class="text-3xl font-bold text-center">{{ '0' }}</p>
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
                             <flux:icon.peoples class="w-5 h-5" /> 
                         </div>
                         <div class="flex flex-col items-center justify-center mt-8">
-                            <h1 class="text-lg font-semibold text-center">{{ __('Pengguna Aktif') }}</h1>
-                            <p class="text-3xl font-bold text-center">{{ __('0') }}</p>
+                            <h1 class="text-lg font-semibold text-center">{{ 'Pengguna Aktif' }}</h1>
+                            <p class="text-3xl font-bold text-center">{{ '0' }}</p>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,8 @@
                     <label for="tanggal_awal" class="w-38 font-medium">Tanggal Awal</label>
                     <flux:input 
                         icon:trailing="calendar" 
-                        datepicker id="default-datepicker"
+                        datepicker 
+                        id="tanggal_awal"
                         type="text" 
                         class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-1 
                             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
