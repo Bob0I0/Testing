@@ -23,8 +23,15 @@
     --color-zinc-800: #262626;
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
+    
+    --color-cyan-100: #eafbf9;
+    --color-cyan-200: #c9f5f0;
+    --color-cyan-300: #A8CECB;
+    --color-cyan-200: #EEF9F9;
+    --color-cyan-700: #0ABAB5;
+    --color-cyan-900: #003634;
 
-    --color-accent: var(--color-red-100);
+    --color-accent: var(--color-cyan-200);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
 }

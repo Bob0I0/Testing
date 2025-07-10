@@ -7,14 +7,13 @@
 <div class="card">
     <div class="card-header">
         <div class="rounded-xl border border-neutral-200 bg-white dark:bg-zinc-800 p-4 shadow-sm">
-            <div class="grid grid-cols-6 items-end gap-4">
+            <div class="grid grid-cols-7 items-end gap-4">
                 {{-- Kolom 1-2: Tanggal Awal (mengambil 2 kolom dari 6) --}}
                 <div class="col-span-2 flex items-center gap-2">
-                    <label for="tanggal_awal" class="w-35 font-medium">Tanggal Awal</label>
+                    <label for="tanggal_awal" class="w-38 font-medium">Tanggal Awal</label>
                     <flux:input 
                         icon:trailing="calendar" 
-                        datepicker 
-                        id="tanggal_awal" 
+                        datepicker id="default-datepicker"
                         type="text" 
                         class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-1 
                             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
@@ -26,7 +25,7 @@
                 <div class="col-span-1"></div>
                 {{-- Kolom 4-5: Tanggal Akhir (mengambil 2 kolom dari 6) --}}
                 <div class="col-span-2 flex items-center gap-2">
-                    <label for="tanggal_akhir" class="w-35 font-medium">Tanggal Akhir</label>
+                    <label for="tanggal_akhir" class="w-38 font-medium">Tanggal Akhir</label>
                     <flux:input 
                         icon:trailing="calendar" 
                         datepicker 
@@ -38,6 +37,7 @@
                         wire:model.live="tanggalAkhir"
                     />
                 </div>
+                <div class="col-span-1"></div>
                 {{-- Kolom 6: Tombol Cari Surat (mengambil 1 kolom dari 6) --}}
                 <div class="col-span-1 flex justify-end">
                     <flux:button 
