@@ -1,12 +1,9 @@
 <div>
-    {{-- Ubah nama modal agar unik untuk edit, misalnya 'edit-file' --}}
+
     <flux:modal name="edit-{{ $suratId }}" class="md:w-130">
         <div class="space-y-6">
-            <div>
-                {{-- Ubah judul --}}
-                <flux:heading size="lg">Edit Data Surat Masuk</flux:heading>
-            </div>
-
+            <flux:heading size="lg">Edit Data Surat Masuk</flux:heading>
+            
             <flux:input wire:model='nomor_surat' label="Nomor Surat" placeholder="XXX/AA/UDDPNK/MM/YYYY" />
 
             <flux:input wire:model='asal_surat' label="Asal Surat" placeholder="Instansi" />
@@ -22,7 +19,7 @@
                     type="text"
                     icon:trailing="calendar"
                     class="text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full z-auto
-                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="dd/mm/yyyy"
                     wire:model="tanggal_surat"
                     label="Tanggal Masuk"
@@ -40,6 +37,7 @@
                         <a href="{{ Storage::url($existingFile) }}" target="_blank" class="text-blue-600 hover:underline text-sm">
                             Lihat File Lama
                         </a>
+                        {{-- Tombol untuk menghapus file lama --}}
                         <flux:button variant="danger" size="xs" wire:click="removeExistingFile" wire:loading.attr="disabled">Hapus File</flux:button>
                     </div>
                 @else
@@ -51,12 +49,6 @@
                     Mengunggah file... Mohon tunggu.
                 </div>
             </div>
-
-            <div class="flex">
-                <flux:modal.trigger name="confirm-{{ $suratId }}"> {{-- Trigger untuk modal konfirmasi edit --}}
-                    <flux:spacer />
-                    <flux:button variant="primary" color="green">Update</flux:button> {{-- Ubah teks tombol --}}
-                </flux:modal.trigger>
 
                 {{-- Modal Konfirmasi Update --}}
                 <flux:modal name="confirm-{{ $suratId }}" class="md:w-96">

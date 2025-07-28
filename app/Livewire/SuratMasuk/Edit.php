@@ -13,6 +13,7 @@ class Edit extends Component // Nama kelas komponen diubah menjadi Edit
 
     // Properti untuk menyimpan ID surat yang akan diedit
     public $suratId;
+    
     protected $listeners = [
     'close-modal' => 'resetIdAndEmitClose', // Dengar event close-modal dari JS
     ];
@@ -29,13 +30,13 @@ class Edit extends Component // Nama kelas komponen diubah menjadi Edit
     // terutama saat menerima ID dari komponen induk (misalnya dari tombol edit di tabel)
     public function mount($id)
     {
-        $surat = SuratMasuk::findOrFail($id); // Cari data surat berdasarkan ID
+        $surat = SuratMasuk::findOrFail($id); // Cari data berdasarkan ID
 
         $this->suratId = $surat->id;
         $this->nomor_surat = $surat->nomor_surat;
         $this->asal_surat = $surat->asal_surat;
         $this->perihal = $surat->perihal;
-        $this->tanggal_surat = $surat->tanggal_surat; // Accessor di model akan memformatnya
+        $this->tanggal_surat = $surat->tanggal_surat; // Akan di-handle oleh accessor/mutator di model jika ada
         $this->jenis_surat = $surat->jenis_surat;
         $this->existingFile = $surat->file; // Simpan path file yang sudah ada
     }

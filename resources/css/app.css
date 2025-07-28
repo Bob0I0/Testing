@@ -1,10 +1,15 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @import '../../vendor/livewire/flux/dist/flux.css';
+
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
 @source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@source "../../node_modules/flowbite";
 @source "../node_modules/flowbite-datepicker";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -72,3 +77,10 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+
+[data-flux-navlist-item] {
+    @apply text-gray-700 dark:text-gray-300; 
+    @apply data-current:bg-cyan-200 dark:data-current:bg-gray-700;
+}
+

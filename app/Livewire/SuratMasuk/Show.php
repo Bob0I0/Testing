@@ -10,40 +10,40 @@ class Show extends Component
 {
     use WithPagination;
 
-    // Properti untuk melacak ID surat yang sedang diedit.
-    // Ini akan digunakan untuk meng conditionally render komponen Edit.
+    // PASTIKAN properti ini ada dan diinisialisasi dengan null
     public $editingSuratId = null;
 
-    // Event listeners yang akan didengarkan oleh komponen Show ini.
+    // PASTIKAN listener ini ada
     protected $listeners = [
-        'surat-masuk-deleted' => '$refresh', // Dari komponen delete Anda
-        'surat-masuk-updated' => '$refresh', // Event yang akan dikirim oleh komponen Edit setelah berhasil update
-        'openEditModal' => 'openEditModal', // Event yang akan memicu pembukaan modal edit
-        'closeEditModal' => 'closeEditModal', // Event untuk menutup modal edit dari Livewire
+        'surat-masuk-deleted' => '$refresh',
+        'surat-masuk-updated' => '$refresh',
+        'openEditModal' => 'openEditModal', // <-- Ini akan dipanggil dari tombol edit
+        'closeEditModal' => 'closeEditModal', // <-- Untuk mereset ID saat modal ditutup
     ];
 
     public function render()
     {
         $query = SuratMasuk::query();
-        $suratMasuks = $query->paginate(10);
+        $suratMasuks = $query->paginate(1);
         
         return view('livewire.surat-masuk.show', [
             'suratMasuks' => $suratMasuks,
         ]);
     }
 
-    // Metode ini akan dipanggil ketika event 'openEditModal' diterima.
+    // PASTIKAN metode ini ada dan menerima $suratId
     public function openEditModal($suratId)
     {
-        $this->editingSuratId = $suratId; // Set ID surat yang akan diedit
-        // Dispatch event untuk membuka modal edit di sisi frontend.
-        // Nama modal ini harus cocok dengan nama di edit.blade.php
+        // PENTING: Set properti editingSuratId dengan ID yang diterima
+        $this->editingSuratId = $suratId;
+
+        // Dispatch event untuk membuka modal. Nama modal harus cocok dengan di edit.blade.php
         $this->dispatch('open-modal', 'edit-file-' . $suratId);
     }
 
-    // Metode ini akan dipanggil ketika modal edit ditutup atau dibatalkan.
+    // Metode untuk mereset ID saat modal ditutup (dari event di Edit.php)
     public function closeEditModal()
     {
-        $this->editingSuratId = null; // Reset ID surat yang diedit
+        $this->editingSuratId = null;
     }
 }

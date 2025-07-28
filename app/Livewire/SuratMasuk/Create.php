@@ -4,6 +4,7 @@ namespace App\Livewire\SuratMasuk;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use App\Models\SuratMasuk; 
+use DateTime;
 
 class Create extends Component
 {
@@ -34,6 +35,28 @@ class Create extends Component
         $filePath = null; 
         if ($this->file) {
             $filePath = $this->file->store('public/surat_files');
+
+                // --- LOGIKA KONVERSI TANGGAL DI SINI ---
+        $convertedDate = null;
+        $dateFromInput = trim($this->tanggal_surat);
+
+        // Coba konversi dari dd/mm/YYYY
+        $dateObj = DateTime::createFromFormat('d/m/Y', $dateFromInput);
+
+        // Jika tidak berhasil, coba dari YYYY-MM-DD (misal jika data lama atau dari sumber lain)
+        if (!$dateObj) {
+            $dateObj = DateTime::createFromFormat('Y-m-d', $dateFromInput);
+        }
+
+        if ($dateObj) {
+            $convertedDate = $dateObj->format('Y-m-d');
+        } else {
+            // Jika konversi gagal, Anda bisa menambahkan error validasi manual
+            $this->addError('tanggal_surat', 'Format tanggal tidak valid. Gunakan DD/MM/YYYY.');
+            return; // Hentikan proses jika tanggal tidak valid
+        }
+        // --- AKHIR LOGIKA KONVERSI ---
+
         }
         SuratMasuk::create([
             "nomor_surat" => $this->nomor_surat,

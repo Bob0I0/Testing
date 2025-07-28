@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SuratKeluar;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +19,10 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password'=> bcrypt('password'),
         ]);
+        // $data = SuratKeluar::factory()->make()->toArray();
+        // dd($data); 
+        SuratKeluar::factory(50)->create();
     }
 }

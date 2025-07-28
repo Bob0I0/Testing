@@ -35,7 +35,7 @@ class SuratMasuk extends Model
     protected function tanggalSurat(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => DateTime::createFromFormat('Y-m-d', $value)->format('d-m-Y'),
+            get: fn (string $value) => DateTime::createFromFormat('Y-m-d', $value)->format('d/m/Y'),
         );
     }
 }

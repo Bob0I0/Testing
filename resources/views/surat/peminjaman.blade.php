@@ -7,6 +7,7 @@
         <div class="card-body">
             <!-- Content for Peminjaman Surat will go here -->
             <p>{{ __('This is where you can manage your letter borrowing.') }}</p>
+            
         </div>
     </div>
 </x-layouts.app>

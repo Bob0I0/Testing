@@ -1,5 +1,6 @@
+
 {{-- Modal Konfirmasi Delete --}}
-<flux:modal name="delete-{{ $suratId }}" class="md:w-96">
+<flux:modal name="delete-{{ $suratKeluarId }}" class="md:w-96">
     <div class="space-y-6">
         <flux:heading size="lg" class="text-red-600">Konfirmasi Penghapusan</flux:heading>
 
@@ -15,6 +16,6 @@
             <flux:modal.close>
                 <flux:button variant="danger" wire:close='delete' >Batal</flux:button>
             </flux:modal.close>
-                        </div>
+        </div>
     </div>
 </flux:modal>

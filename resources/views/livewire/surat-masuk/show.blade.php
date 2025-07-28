@@ -21,36 +21,43 @@
             @php $num = 1; @endphp
             @forelse ($suratMasuks as $surat)
                 <tr>
-                    <td class="border px-3 py-1 text-center">{{ $num++ }}</td>
+                    <td class="border px-3 py-1 text-center">{{ $surat->firstItem()}}</td>
                     <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->asal_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tanggal_surat }}</td>
                     <td class="border px-3 py-1 break-words max-w-xs">{{ $surat->perihal }}</td>
                     <td class="border px-3 py-1">{{ $surat->jenis_surat }}</td>
                     <td class="border px-3 py-1">
-                        <flux:button.group>
-                                <flux:button icon="edit" variant="subtle" wire:click="$dispatch('openEditModal', { suratId: {{ $surat->id }} })"></flux:button>
-                            <flux:modal.trigger name="delete-{{ $surat->id }}">
-                                <flux:button icon="trash" variant="subtle"></flux:button>
-                            </flux:modal.trigger>
-                            <livewire:surat-masuk.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />            
-                            <flux:button href="#" icon="receive" variant="subtle"></flux:button>
-                            
-                        </flux:button.group>
+                    <flux:button.group>
+                        <flux:modal.trigger name="edit-{{ $surat->id }}">
+                            <flux:button icon="edit" variant="subtle"></flux:button>
+                        </flux:modal.trigger>
+                          
+                        <flux:modal.trigger name="delete-{{ $surat->id }}">
+                            <flux:button icon="trash" variant="subtle"></flux:button>
+                        </flux:modal.trigger>
+                        <livewire:surat-masuk.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />            
+                        
+                        <flux:button href="#" icon="receive" variant="subtle"></flux:button>
+                        
+                    </flux:button.group>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="py-3 px-6 text-center">Tidak ada data surat masuk.</td>
+                    <td class="border px-3 py-4 "></td>
+                    <td class="border px-3 py-4"></td>
+                    <td class="border px-3 py-4"></td>
+                    <td class="border px-3 py-4"></td>
+                    <td class="border px-3 py-4 break-words max-w-xs"></td>
+                    <td class="border px-3 py-4"></td>
+                    <td class="border px-3 py-4"></td>
                 </tr>
             @endforelse
-            @if ($editingSuratId)
-                <livewire:surat-masuk.edit :id="$editingSuratId" :key="$editingSuratId" />
-            @endif
-            {{ $suratMasuks->links() }}
         </tbody>
     </table>
-    <flux:spacer />
+    {{ $suratMasuks->links() }}
+    {{-- <flux:spacer />
     <nav aria-label="Page navigation example">
     <ul class="inline-flex -space-x-px text-sm">
         <li>
@@ -63,6 +70,6 @@
         <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
         </li>
     </ul>
-    </nav>
+    </nav> --}}
 </div>
 

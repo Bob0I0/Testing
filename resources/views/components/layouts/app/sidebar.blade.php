@@ -33,7 +33,8 @@
                 </flux:navlist.group>
                 
                 <flux:separator class="my-1"/>
-                <flux:navlist.group class="my-1" icon="sms" heading="Surat" expandable :expanded="request()->routeIs('peminjaman') || request()->routeIs('pengembalian')">
+                <flux:navlist.item href="/peminjaman" icon="sms">Surat</flux:navlist.item>
+                {{-- <flux:navlist.group class="my-1" icon="sms" heading="Surat" expandable :expanded="request()->routeIs('peminjaman') || request()->routeIs('pengembalian')">
                     <flux:navlist.item
                         href="/peminjaman"
                         :icon="request()->routeIs('peminjaman') ? 'doton' : 'dotoff'"
@@ -48,7 +49,7 @@
                     >
                         Pengembalian
                     </flux:navlist.item>
-                </flux:navlist.group>
+                </flux:navlist.group> --}}
                 <flux:separator class="my-1"/>
                 
                 <flux:navlist.item href="/kelola" icon="edituser">Kelola Pengguna</flux:navlist.item>
@@ -56,30 +57,70 @@
             </flux:navlist>
 
             <flux:spacer />
-            {{-- 
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
+            
+            <flux:separator />
+            <flux:dropdown class="hidden lg:block" position="bottom" align="start">
+                <flux:profile
+                    name="Pengguna"
+                    :initials="auth()->user()->initials()"
+                    avatar:badge 
+                    avatar:badge:circle
+                    avatar:badge:color="green"
+                    avatar:color="cyan"
+                    :chevron="false"
+                />
 
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
-            --}}            
+                <flux:menu class="w-[220px]">
+                    <flux:menu.radio.group>
+                        <div class="p-0 text-sm font-normal">
+                            <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                                <div class="grid flex-1 text-start text-sm leading-tight">
+                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                    <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </flux:menu.radio.group>
+
+                    <flux:menu.radio.group>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    </flux:menu.radio.group>
+                    
+                    <flux:menu.separator />
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                    </form>
+                </flux:menu>
+            </flux:dropdown>
+            
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
         <flux:header class="lg:hidden">
+            
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-            <x:searchbar />
+        
         </flux:header>
-        <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-[#EEF9F9] dark:bg-zinc-800">
+        {{-- <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-[#EEF9F9] dark:bg-zinc-800">
             <x:searchbar />
-        </div>
+        </div> --}}
         
         {{ $slot }}
+        {{-- @stack('scripts') --}}
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js"></script>
+
         @fluxScripts
     </body>
 </html>
