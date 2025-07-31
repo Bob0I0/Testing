@@ -1,5 +1,5 @@
 <div class="overflow-x-auto bg-white dark:bg-zinc-800 p-4 rounded-xl shadow-sm border">
-    
+    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounce="search" wire:keyup="set('search',$event.target.value)" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
     <livewire:surat-keluar.create /> {{-- Pastikan ini ada di tempat yang benar dan punya trigger --}}
 
     <div class="my-3"></div>
@@ -18,7 +18,7 @@
         <tbody>
             @forelse ($datakeluar as $key => $surat)
                 <tr>
-                    <td class="border px-3 py-1 text-center">{{ $datakeluar->firstItem() + $key }}</td> {{-- Pastikan 'I' kapital --}}
+                    <td class="border px-3 py-1 text-center">{{ $datakeluar->firstItem() + $key }}</td>
                     <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tujuan_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tanggal_surat->format('d-m-Y') }}</td>
@@ -27,23 +27,17 @@
                     <td class="border px-3 py-1">
                         <flux:button.group>
 
-                            {{-- TOMBOL EDIT --}}
-                            <flux:modal.trigger name="edit-{{ $surat->id }}">
-                                <flux:button icon="edit" variant="subtle"></flux:button>
-                            </flux:modal.trigger>
+                            <flux:button icon="edit" variant="subtle" data-modal-target="edit-{{ $surat->id }}" data-modal-toggle="edit-{{ $surat->id }}"></flux:button>
 
                             <flux:modal.trigger name="delete-{{ $surat->id }}">
                                 <flux:button icon="trash" variant="subtle"></flux:button>
                             </flux:modal.trigger>
-                            {{-- Pastikan ini livewire:surat-keluar.delete jika ini terkait surat keluar --}}
                             <livewire:surat-keluar.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />
 
-                            @if ($surat->file) {{-- Pastikan ada file untuk diunduh --}}
-                                <flux:button wire:click="download({{ $surat->id }})" icon="receive" variant="subtle"></flux:button>
-                            @else
-                                {{-- Opsional: Tampilkan sesuatu jika tidak ada file --}}
-                                <span>Tidak ada file</span>
-                            @endif
+                            <flux:modal.trigger name="download_SKeluar-{{ $surat->id }}">
+                                <flux:button icon="receive" variant="subtle"></flux:button>
+                            </flux:modal.trigger>
+                            <livewire:surat-keluar.unduh :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id"/>
 
                         </flux:button.group>
                     </td>

@@ -77,6 +77,7 @@
                     </div>
                 </div>
             </div>
+            <livewire:komponen.chart />
         </div>
     </div>
 </x-layouts.app>

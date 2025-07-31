@@ -1,10 +1,21 @@
 <x-layouts.app :title="__('Surat Keluar')">
-<flux:input sticky placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
+
+{{-- <flux:input sticky placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" class="w-full text-lg shadow-sm rounded-xl mb-4"/> --}}
+<flux:input 
+     
+    type="text"
+    placeholder="Cari Berdasarkan Nomor Surat" 
+    icon="magnifying-glass" 
+    class="w-full text-lg shadow-md rounded-xl mb-4"
+    wire:model.live.debounce.300ms="search"
+    {{-- wire:keyup="set('search', $event.target.value)" --}}
+/>
 <div class="relative mb-4 w-full">
     <flux:heading size="xl" level="1" variant="strong">
         <strong>{{ __('Data Surat Keluar') }}</strong>
     </flux:heading>
 </div>
+
 <div class="card">
     <div class="card-header">
         <div class="rounded-xl border border-neutral-200 bg-white dark:bg-zinc-800 p-4 shadow-sm">

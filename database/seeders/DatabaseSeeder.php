@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         ]);
         // $data = SuratKeluar::factory()->make()->toArray();
         // dd($data); 
-        SuratKeluar::factory(50)->create();
+        // SuratKeluar::factory(50)->create();
     }
 }

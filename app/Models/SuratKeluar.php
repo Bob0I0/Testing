@@ -13,7 +13,7 @@ class SuratKeluar extends Model
 
     protected $fillable=["nomor_surat",
     "tujuan_surat", "perihal", "tanggal_surat",
-    "jenis_surat","file"];
+    "jenis_surat", "file", "nama_asli_file"];
 
     // Tambahkan properti $casts ini
     protected $casts = [

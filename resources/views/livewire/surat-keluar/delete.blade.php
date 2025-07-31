@@ -1,29 +1,30 @@
 <div>
-    {{-- Pastikan nama modal unik berdasarkan $suratId --}}
-    <flux:modal name="delete-{{ $suratId }}" class="md:w-150" title="Konfirmasi Hapus Data Surat Keluar">
-        <flux:fieldset>
-            <p class="text-lg text-gray-800 dark:text-gray-200">
-                Apakah Anda yakin ingin menghapus surat dengan nomor: <strong>{{ $nomorSurat }}</strong>?
-            </p>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                Tindakan ini tidak dapat dibatalkan.
-            </p>
+    <flux:modal name="delete-{{ $suratId }}" class="md:w-100" title="Konfirmasi Hapus Data Surat Keluar">
+        <div class="space-y-6">
 
-            <div class="flex justify-end gap-3 mt-6">
-                <flux:modal.close>
-                    <flux:button variant="danger" wire:close='delete' >Batal</flux:button>
-                </flux:modal.close>
-                
+            <flux:text variant="strong" class="mt-4 text-center text-base">
+                <p><b class="font-extrabold">Apakah Anda Yakin Ingin</b></p> 
+                <p><b class="font-extrabold">Menghapus Data Surat Ini?</b></p>
+                <p class="text-sm mt-1">Surat dengan nomor <strong>{{ $nomorSurat }}</strong>
+                <p class="text-sm">akan dihapus. Yakin melanjutkan?</p></p>
+            </flux:text>
+
+            <div class="grid grid-cols-2 gap-4">
+
                 <flux:button 
                     type="button" 
-                    variant="danger" 
-                    wire:click="delete" {{-- Ini memanggil metode delete() di komponen --}}
+                    variant="primary" color="green" 
                     wire:loading.attr="disabled"
                 >
                     <span wire:loading.remove wire:target="delete">Hapus</span>
                     <span wire:loading wire:target="delete">Menghapus...</span>
                 </flux:button>
+
+                <flux:modal.close>
+                    <flux:button variant="primary" color="red" class="w-full">Batal</flux:button>
+                </flux:modal.close>
+
             </div>
-        </flux:fieldset>
+        </div>
     </flux:modal>
 </div>
