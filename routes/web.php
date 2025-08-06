@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'livewire.komponen.dashboard')
+Route::view('dashboard', 'livewire.dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -18,14 +18,11 @@ Route::view('/suratkeluar', 'livewire.surat-keluar.filter')
     ->middleware(['auth', 'verified'])
     ->name('suratkeluar');
 
-Route::view('/peminjaman', 'surat.peminjaman')
-    ->middleware(['auth', 'verified'])
-    ->name('peminjaman');
-Route::view('/pengembalian', 'surat.pengembalian')
+Route::view('/surat', 'livewire.pinjamsurat')
     ->middleware(['auth', 'verified'])
     ->name('pengembalian');
 
-Route::view('/kelola', 'kelolauser')
+Route::view('/kelola', 'livewire.kelolauser')
     ->middleware(['auth', 'verified'])
     ->name('kelolauser');
 

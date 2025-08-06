@@ -33,23 +33,7 @@
                 </flux:navlist.group>
                 
                 <flux:separator class="my-1"/>
-                <flux:navlist.item href="/peminjaman" icon="sms">Surat</flux:navlist.item>
-                {{-- <flux:navlist.group class="my-1" icon="sms" heading="Surat" expandable :expanded="request()->routeIs('peminjaman') || request()->routeIs('pengembalian')">
-                    <flux:navlist.item
-                        href="/peminjaman"
-                        :icon="request()->routeIs('peminjaman') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Peminjaman
-                    </flux:navlist.item>
-                    <flux:navlist.item
-                        href="/pengembalian"
-                        :icon="request()->routeIs('pengembalian') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Pengembalian
-                    </flux:navlist.item>
-                </flux:navlist.group> --}}
+                <flux:navlist.item href="/surat" icon="sms">Surat</flux:navlist.item>
                 <flux:separator class="my-1"/>
                 
                 <flux:navlist.item href="/kelola" icon="edituser">Kelola Pengguna</flux:navlist.item>
