@@ -12,8 +12,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new #[Layout('components.layouts.auth')] class extends Component {
-    #[Validate('required|string|email')]
-    public string $email = '';
+    #[Validate('required|string')]
+    public string $email_or_username = '';
 
     #[Validate('required|string')]
     public string $password = '';
@@ -29,11 +29,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        $login_name = filter_var($this->email_or_username, FILTER_VALIDATE_EMAIL) ? "email" : "username";
+        
+        if (! Auth::attempt([$login_name => $this->email_or_username, 'password' => $this->password], $this->remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
+                'email_or_username' => __('auth.failed'),
             ]);
         }
 
@@ -57,7 +59,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => __('auth.throttle', [
+            'email_or_username' => __('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -69,7 +71,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email_or_username).'|'.request()->ip());
     }
 }; ?>
 
@@ -83,13 +85,12 @@ new #[Layout('components.layouts.auth')] class extends Component {
             <form wire:submit="login" class="flex flex-col gap-6">
                 <!-- Email Address -->
                 <flux:input
-                    wire:model="email"
-                    :label="__('Email')"
-                    type="email"
+                    wire:model="email_or_username"
+                    :label="__('Email/Username')"
+                    type="text"
                     required
                     autofocus
-                    autocomplete="email"
-                    placeholder="example@gmail.com"
+                    placeholder="example@gmail.com/Username"
                     class="rounded-lg"
                 />
                 <!-- Password -->
