@@ -1,5 +1,5 @@
 <div class="overflow-x-auto bg-white dark:bg-zinc-800 p-4 rounded-xl shadow-sm border">
-    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounce="search" wire:keyup="set('search',$event.target.value)" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
+    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounc.450mse="search" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
     <livewire:surat-keluar.create /> {{-- Pastikan ini ada di tempat yang benar dan punya trigger --}}
 
     <div class="my-3"></div>
@@ -16,9 +16,9 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($datakeluar as $key => $surat)
+            @forelse ($this->datakeluar as $key => $surat)
                 <tr>
-                    <td class="border px-3 py-1 text-center">{{ $datakeluar->firstItem() + $key }}</td>
+                    <td class="border px-3 py-1 text-center">{{ $this->datakeluar->firstItem() + $key }}</td>
                     <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tujuan_surat }}</td>
                     <td class="border px-3 py-1">{{ $surat->tanggal_surat->format('d-m-Y') }}</td>
@@ -57,7 +57,7 @@
         </tbody>
     </table>
     <div class="mt-5">
-        {{ $datakeluar->links('vendor.pagination.custom-pagi') }}
+        {{ $this->datakeluar->links('vendor.pagination.custom-pagi') }}
     </div>
     
     {{-- DEFINISI MODAL EDIT (DI LUAR LOOP!) --}}
@@ -66,7 +66,7 @@
     {{-- Ini adalah pendekatan umum jika Anda menggunakan 1 modal untuk semua edit --}}
     <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'edit-' + editingId) editingId = $event.detail.substring(5)">
 
-        @foreach ($datakeluar as $surat)
+        @foreach ($this->datakeluar as $surat)
             {{-- Render komponen Livewire Edit untuk setiap surat di dalam modal masing-masing --}}
             {{-- Name modal harus cocok dengan name trigger --}}
                 {{-- Gunakan :key untuk memastikan Livewire merender ulang komponen ketika ID surat berubah --}}
