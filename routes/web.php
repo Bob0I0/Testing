@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Kelolauser\Show;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -22,12 +23,14 @@ Route::view('/surat', 'livewire.pinjamsurat')
     ->middleware(['auth', 'verified'])
     ->name('pengembalian');
 
-Route::view('/kelola', 'livewire.kelolauser')
+Route::view('/kelola', 'livewire.kelolauser.show')
     ->middleware(['auth', 'verified'])
     ->name('kelolauser');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
+
+    Route::get("kelolauser",Show::class)->name("kelola");
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');

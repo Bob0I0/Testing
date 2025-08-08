@@ -11,7 +11,6 @@
                 <flux:separator class="my-0"/>
             </div>
             <flux:navlist class="w-55">
-                
                 <flux:navlist.item href="/dashboard" icon="home">Dashboard</flux:navlist.item>
                 <flux:separator class="my-1"/>
                 
@@ -36,7 +35,8 @@
                 <flux:navlist.item href="/surat" icon="sms">Surat</flux:navlist.item>
                 <flux:separator class="my-1"/>
                 
-                <flux:navlist.item href="/kelola" icon="edituser">Kelola Pengguna</flux:navlist.item>
+                {{-- <flux:navlist.item href="/kelola" icon="edituser">Kelola Pengguna</flux:navlist.item> --}}
+                <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" wire:navigate>{{ __('Kelola User') }}</flux:navlist.item>
                 <flux:separator class="my-2"/>
             </flux:navlist>
 
@@ -60,7 +60,7 @@
                             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
                                 <div class="grid flex-1 text-start text-sm leading-tight">
                                     <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                    <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                    <span class="truncate text-xs">{{ auth()->user()->username }}</span>
                                 </div>
                             </div>
                         </div>
