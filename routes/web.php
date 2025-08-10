@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Kelolauser\Show;
+use App\Livewire\Pinjamsurat\Index;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -19,9 +20,6 @@ Route::view('/suratkeluar', 'livewire.surat-keluar.filter')
     ->middleware(['auth', 'verified'])
     ->name('suratkeluar');
 
-Route::view('/surat', 'livewire.pinjamsurat')
-    ->middleware(['auth', 'verified'])
-    ->name('pengembalian');
 
 Route::view('/kelola', 'livewire.kelolauser.show')
     ->middleware(['auth', 'verified'])
@@ -29,6 +27,8 @@ Route::view('/kelola', 'livewire.kelolauser.show')
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
+
+    Route::get('surat',Index::class)->name("pinjamsurat");
 
     Route::get("kelolauser",Show::class)->name("kelola");
 

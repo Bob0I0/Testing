@@ -8,7 +8,7 @@ use Livewire\Volt\Component;
 
 new class extends Component {
     public string $name = '';
-    public string $email = '';
+    // public string $email = '';
 
     /**
      * Mount the component.
@@ -16,7 +16,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        // $this->email = Auth::user()->email;
     }
 
     /**

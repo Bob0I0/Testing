@@ -32,10 +32,9 @@
                 </flux:navlist.group>
                 
                 <flux:separator class="my-1"/>
-                <flux:navlist.item href="/surat" icon="sms">Surat</flux:navlist.item>
+                <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" wire:navigate>{{ __('Surat') }}</flux:navlist.item>
                 <flux:separator class="my-1"/>
-                
-                {{-- <flux:navlist.item href="/kelola" icon="edituser">Kelola Pengguna</flux:navlist.item> --}}
+
                 <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" wire:navigate>{{ __('Kelola User') }}</flux:navlist.item>
                 <flux:separator class="my-2"/>
             </flux:navlist>
@@ -67,7 +66,7 @@
                     </flux:menu.radio.group>
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item :href="route('settings.appearance')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
                     
                     <flux:menu.separator />
@@ -127,9 +126,6 @@
                 </flux:menu>
             </flux:dropdown>
         </flux:header>
-        {{-- <div class="hidden lg:flex w-full px-6 py-4 items-center justify-end bg-[#EEF9F9] dark:bg-zinc-800">
-            <x:searchbar />
-        </div> --}}
         
         {{ $slot }}
         {{-- @stack('scripts') --}}
