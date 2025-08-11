@@ -39,6 +39,7 @@
     --color-accent: var(--color-cyan-200);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
+    --icon-color: #292D32;
 }
 
 @layer theme {
@@ -46,6 +47,7 @@
         --color-accent: var(--color-white);
         --color-accent-content: var(--color-white);
         --color-accent-foreground: var(--color-neutral-800);
+        --icon-color: var(--color-neutral-300);
     }
 }
 

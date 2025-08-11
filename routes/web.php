@@ -2,6 +2,7 @@
 
 use App\Livewire\Kelolauser\Show;
 use App\Livewire\Pinjamsurat\Index;
+use App\Livewire\SuratMasuk\Index as SuratMasukIndex;
 use App\Livewire\TestingPage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -14,9 +15,6 @@ Route::view('dashboard', 'livewire.dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('/suratmasuk', 'livewire.surat-masuk.filter')
-    ->middleware(['auth', 'verified'])
-    ->name('suratmasuk');
 Route::view('/suratkeluar', 'livewire.surat-keluar.filter')
     ->middleware(['auth', 'verified'])
     ->name('suratkeluar');
@@ -28,6 +26,8 @@ Route::view('/kelola', 'livewire.kelolauser.show')
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
+
+    Route::get("suratmasuk",SuratMasukIndex::class)->name("suratmasuk");
 
     Route::get('surat',Index::class)->name("pinjamsurat");
 

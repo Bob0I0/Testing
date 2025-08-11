@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('surat_masuk', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_surat');
+            $table->string('nomor_surat')->unique();
             $table->string('asal_surat');
             $table->date('tanggal_surat');
             $table->text('perihal');
             $table->string('file');
+            $table->string('nama_asli_file');
             $table->string('jenis_surat');
             $table->timestamps();
         });

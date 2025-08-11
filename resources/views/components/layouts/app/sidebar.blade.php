@@ -19,6 +19,7 @@
                         href="{{ route('suratmasuk') }}"
                         :icon="request()->routeIs('suratmasuk') ? 'doton' : 'dotoff'"
                         :dot-icon="true"
+                        wire:navigate
                     >
                         Surat Masuk
                     </flux:navlist.item>
@@ -26,6 +27,7 @@
                         href="{{ route('suratkeluar') }}"
                         :icon="request()->routeIs('suratkeluar') ? 'doton' : 'dotoff'"
                         :dot-icon="true"
+                        wire:navigate
                     >
                         Surat Keluar
                     </flux:navlist.item>
