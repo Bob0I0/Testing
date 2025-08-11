@@ -3,8 +3,8 @@
 namespace App\Livewire\SuratKeluar;
 
 use Livewire\Component;
-use App\Models\SuratKeluar; // <--- PASTIKAN MENGGUNAKAN MODEL YANG BENAR
-use Illuminate\Support\Facades\Storage; // <--- TAMBAHKAN INI
+use App\Models\SuratKeluar;
+use Illuminate\Support\Facades\Storage;
 
 class Delete extends Component
 {

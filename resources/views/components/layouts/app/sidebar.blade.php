@@ -37,6 +37,7 @@
 
                 <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" wire:navigate>{{ __('Kelola User') }}</flux:navlist.item>
                 <flux:separator class="my-2"/>
+                <flux:navlist.item icon="edituser" :href="route('testing')" :current="request()->routeIs('testing')" wire:navigate>{{ __('Testing Page') }}</flux:navlist.item>
             </flux:navlist>
 
             <flux:spacer />

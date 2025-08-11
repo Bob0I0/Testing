@@ -1,5 +1,5 @@
 <div class="overflow-x-auto bg-white dark:bg-zinc-800 p-4 rounded-xl shadow-sm border">
-    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounc.450mse="search" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
+    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounce.300ms="search" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
     <livewire:surat-keluar.create /> {{-- Pastikan ini ada di tempat yang benar dan punya trigger --}}
 
     <div class="my-3"></div>

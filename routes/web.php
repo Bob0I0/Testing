@@ -2,6 +2,7 @@
 
 use App\Livewire\Kelolauser\Show;
 use App\Livewire\Pinjamsurat\Index;
+use App\Livewire\TestingPage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -31,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('surat',Index::class)->name("pinjamsurat");
 
     Route::get("kelolauser",Show::class)->name("kelola");
+
+    Route::get("testing",TestingPage::class)->name("testing");
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
