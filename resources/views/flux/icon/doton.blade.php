@@ -29,7 +29,7 @@
     cx="3.5"
     cy="3.5"
     r="2.5"
-    stroke="currentColor"
+    stroke="#D8D8D8"
     stroke-width="1"
   />
   <circle

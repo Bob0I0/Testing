@@ -13,11 +13,6 @@ class Chart extends Component
     public $name2 = 'Surat Keluar';
     public $dataPoint2 = [80, 70, 90, 85, 95, 100, 110, 105, 115, 120, 130, 125]; // Example data
 
-    public $label1 = 'Pemasukan';
-    public $label2 = 'Pengeluaran';
-    public $dataPointp1 = 5000000; // Contoh: Pemasukan untuk periode tertentu
-    public $dataPointp2 = 2000000; // Contoh: Pengeluaran untuk periode tertentu
-    public $chartTitle = 'Proporsi Keuangan Bulan Juni 2025'; // Judul chart
 
     public function render()
     {

@@ -60,7 +60,6 @@ class Filter extends Component
 
     public function render()
     {
-        dd('Komponen Filter sedang dirender!');
         return view('livewire.surat-keluar.filter');
     }
 }

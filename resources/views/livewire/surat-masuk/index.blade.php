@@ -70,9 +70,11 @@
         </div>
     </div>
 
+    
     <!-- Table Index -->
     <div class="overflow-x-auto my-3 bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
-        <table class="table-fixed min-w-full my-1 border-gray-300 text-sm">
+        <livewire:surat-masuk.create />
+        <table class="table-fixed min-w-full my-3 border-gray-300 text-sm">
             <thead class="bg-cyan-900 text-white text-left">
                 <tr>
                     <th class="border px-3 py-1 w-12">No</th>
@@ -85,34 +87,34 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @forelse ($this->datakeluar as $key => $surat)
+                @forelse ($this->SuratMasukIndex as $key => $surat)
                     <tr>
-                        <td class="border px-3 py-1 text-center">{{ $this->datakeluar->firstItem() + $key }}</td>
+                        <td class="border px-3 py-1 text-center">{{ $this->SuratMasukIndex->firstItem() + $key }}</td>
                         <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
-                        <td class="border px-3 py-1">{{ $surat->tujuan_surat }}</td>
+                        <td class="border px-3 py-1">{{ $surat->asal_surat }}</td>
                         <td class="border px-3 py-1">{{ $surat->tanggal_surat->format('d-m-Y') }}</td>
                         <td class="border px-3 py-1 break-words max-w-xs">{{ $surat->perihal }}</td>
                         <td class="border px-3 py-1">{{ $surat->jenis_surat }}</td>
                         <td class="border px-3 py-1">
                             <flux:button.group>
 
-                                <flux:button icon="edit" variant="subtle" data-modal-target="edit-{{ $surat->id }}" data-modal-toggle="edit-{{ $surat->id }}"></flux:button>
+                                <flux:button icon="edit" variant="subtle" data-modal-target="edit-SM-{{ $surat->id }}" data-modal-toggle="edit-SM-{{ $surat->id }}"></flux:button>
 
-                                <flux:modal.trigger name="delete-{{ $surat->id }}">
+                                <flux:modal.trigger name="deleteSM-{{ $surat->id }}">
                                     <flux:button icon="trash" variant="subtle"></flux:button>
                                 </flux:modal.trigger>
-                                <livewire:surat-keluar.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />
+                                <livewire:surat-masuk.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />
 
-                                <flux:modal.trigger name="download_SKeluar-{{ $surat->id }}">
+                                <flux:modal.trigger name="download_SMasuk-{{ $surat->id }}">
                                     <flux:button icon="receive" variant="subtle"></flux:button>
                                 </flux:modal.trigger>
-                                <livewire:surat-keluar.unduh :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id"/>
+                                <livewire:surat-masuk.unduh :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id"/>
 
                             </flux:button.group>
                         </td>
                     </tr>
 
-                @empty --}}
+                @empty
                     <tr>
                         <td class="border px-3 py-4"></td>
                         <td class="border px-3 py-4"></td>
@@ -122,11 +124,20 @@
                         <td class="border px-3 py-4"></td>
                         <td class="border px-3 py-4"></td>
                     </tr>
-                {{-- @endforelse --}}
+                @endforelse
             </tbody>
         </table>
         <div class="mt-5">
-            {{-- {{ $this->datakeluar->links('vendor.pagination.custom-pagi') }} --}}
+            {{ $this->SuratMasukIndex->links('vendor.pagination.custom-pagi') }}
         </div>
     </div> 
+    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'edit-SM-' + editingId) editingId = $event.detail.substring(5)">
+
+        @foreach ($this->SuratMasukIndex as $surat)
+            {{-- Render komponen Livewire Edit untuk setiap surat di dalam modal masing-masing --}}
+            {{-- Name modal harus cocok dengan name trigger --}}
+                {{-- Gunakan :key untuk memastikan Livewire merender ulang komponen ketika ID surat berubah --}}
+                <livewire:surat-masuk.edit :surat-id="$surat->id" :key="'edit-form-'.$surat->id" />
+        @endforeach
+    </div>
 </div>

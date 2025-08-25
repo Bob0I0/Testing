@@ -13,5 +13,8 @@ class SuratMasuk extends Model
                             "jenis_surat",
                             "file",
                             "nama_asli_file"];
-    
+    protected $casts = [
+        'tanggal_surat' => 'date',
+    ];
+
 }

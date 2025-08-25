@@ -22,6 +22,6 @@
     cx="3.5"
     cy="3.5"
     r="2"
-    fill="currentColor"
+    fill="#D8D8D8"
   />
 </svg>

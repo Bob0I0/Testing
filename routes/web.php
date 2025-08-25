@@ -1,23 +1,19 @@
 <?php
 
+use App\Livewire\Dashboard;
 use App\Livewire\Kelolauser\Show;
 use App\Livewire\Pinjamsurat\Index;
+use App\Livewire\SuratKeluar\Filter;
 use App\Livewire\SuratMasuk\Index as SuratMasukIndex;
 use App\Livewire\TestingPage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::redirect('/', '/login');
 
 Route::view('dashboard', 'livewire.dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-Route::view('/suratkeluar', 'livewire.surat-keluar.filter')
-    ->middleware(['auth', 'verified'])
-    ->name('suratkeluar');
 
 
 Route::view('/kelola', 'livewire.kelolauser.show')
@@ -25,9 +21,13 @@ Route::view('/kelola', 'livewire.kelolauser.show')
     ->name('kelolauser');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get("dashboard",Dashboard::class)->name("dashboard");
+
     Route::redirect('settings', 'settings/profile');
 
     Route::get("suratmasuk",SuratMasukIndex::class)->name("suratmasuk");
+
+    Route::get("suratkeluar",Filter::class)->name("suratkeluar");
 
     Route::get('surat',Index::class)->name("pinjamsurat");
 
