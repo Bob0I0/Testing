@@ -11,7 +11,6 @@ use Livewire\Volt\Component;
 new #[Layout('components.layouts.auth')] class extends Component {
     public string $name = '';
     public string $username = '';
-    // public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
 

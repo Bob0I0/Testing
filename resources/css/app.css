@@ -85,4 +85,3 @@ select:focus[data-flux-control] {
     @apply text-gray-700 dark:text-gray-300; 
     @apply data-current:bg-cyan-200 dark:data-current:bg-gray-700;
 }
-

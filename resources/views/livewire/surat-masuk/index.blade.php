@@ -98,7 +98,7 @@
                         <td class="border px-3 py-1">
                             <flux:button.group>
 
-                                <flux:button icon="edit" variant="subtle" data-modal-target="edit-SM-{{ $surat->id }}" data-modal-toggle="edit-SM-{{ $surat->id }}"></flux:button>
+                                <flux:button icon="edit" variant="subtle" data-modal-target="editSM-{{ $surat->id }}" data-modal-toggle="edit-SM-{{ $surat->id }}"></flux:button>
 
                                 <flux:modal.trigger name="deleteSM-{{ $surat->id }}">
                                     <flux:button icon="trash" variant="subtle"></flux:button>
@@ -131,7 +131,7 @@
             {{ $this->SuratMasukIndex->links('vendor.pagination.custom-pagi') }}
         </div>
     </div> 
-    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'edit-SM-' + editingId) editingId = $event.detail.substring(5)">
+    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'editSM-' + editingId) editingId = $event.detail.substring(5)">
 
         @foreach ($this->SuratMasukIndex as $surat)
             {{-- Render komponen Livewire Edit untuk setiap surat di dalam modal masing-masing --}}

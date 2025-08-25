@@ -1,11 +1,11 @@
 <div>
     <!-- Modal toggle -->
-    <flux:button data-modal-target="create-user" data-modal-toggle="create-user" variant="primary" color="cyan">
+    <flux:button data-modal-target="createuser" data-modal-toggle="createuser" variant="primary" color="cyan">
     Tambah Data
     </flux:button>
 
     <!-- Main modal -->
-    <div wire:ignore.self id="create-user" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="createuser" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -17,14 +17,14 @@
                         <strong>{{ __('Tambah Data Pengguna') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="create-user">
+                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="createuser">
                     </flux:button>
 
                 </div>
 
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form wire:submit="register" class="flex flex-col gap-6">
+                    <form wire:submit="createacc" class="flex flex-col gap-6">
                         <!-- Name -->
                         <flux:input
                             wire:model="name"
@@ -68,6 +68,14 @@
                                 viewable
                             />
                         </div>
+                        <flux:field>
+                            <flux:label>Level</flux:label>
+                            <flux:select wire:model="industry" :chevron="false" placeholder="Choose industry...">
+                                <flux:select.option>Photography</flux:select.option>
+                                <flux:select.option>Design services</flux:select.option>
+                                <flux:select.option>Web development</flux:select.option>
+                            </flux:select>
+                        </flux:field>
 
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">
@@ -81,7 +89,6 @@
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
                                         <p><b class="font-extrabold">Masukkan Sudah Benar?</b></p>
-                                        {{-- <p class="text-sm mt-1">Surat dengan nomor <strong>{{ $nomorSurat }}</strong> --}}
                                         <p class="text-sm">Silakan periksa kembali sebelum</p>
                                         <p class="text-sm">menyimpan untuk menghindari kesalahan.</p>
                                     </flux:text>

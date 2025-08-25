@@ -46,6 +46,6 @@
                 </div>
             </div>
         </div>
-        <livewire:komponen.chart />
+        <livewire:komponen.chart lazy />
     </div>
 </div>

@@ -1,10 +1,10 @@
 <div>
     <!-- Create Button -->
-    <flux:button data-modal-target="create-surat-masuk" data-modal-toggle="create-surat-masuk" variant="primary" color="cyan">
+    <flux:button data-modal-target="createmasuk" data-modal-toggle="createmasuk" variant="primary" color="cyan">
     Tambah Data
     </flux:button>
     <!-- form modal -->
-    <div wire:ignore.self id="create-surat-masuk" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="createmasuk" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -15,7 +15,7 @@
                         <strong>{{ __('Tambah Data Surat Masuk') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="create-surat-masuk">
+                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="createmasuk">
                     </flux:button>
                 </div>
                 <!-- Modal body -->

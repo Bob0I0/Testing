@@ -44,10 +44,10 @@
                             <flux:error name="form.file" />
                         </flux:field>
                         @if ($form->existing_file_path) {{-- Periksa properti existing_file_path --}}
-                            <p class="text-sm text-gray-600 dark:text-gray-400">File saat ini: 
-                                <a href="{{ Storage::url($form->existing_file_path) }}" target="_blank" class="text-blue-500 hover:underline">
-                                    {{ $form->original_file_name ?? basename($form->existing_file_path) }} 
-                                </a>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">File saat ini:
+                                <span>
+                                    {{ $form->original_file_name ?? basename($form->existing_file_path) }}
+                                </span>
                             </p>
                         @endif
                         <!-- Modal Confirmation -->

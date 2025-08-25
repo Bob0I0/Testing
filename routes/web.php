@@ -3,7 +3,7 @@
 use App\Livewire\Dashboard;
 use App\Livewire\Kelolauser\Show;
 use App\Livewire\Pinjamsurat\Index;
-use App\Livewire\SuratKeluar\Filter;
+use App\Livewire\SuratKeluar\Show as SuratKeluarIndex;
 use App\Livewire\SuratMasuk\Index as SuratMasukIndex;
 use App\Livewire\TestingPage;
 use Illuminate\Support\Facades\Route;
@@ -27,13 +27,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("suratmasuk",SuratMasukIndex::class)->name("suratmasuk");
 
-    Route::get("suratkeluar",Filter::class)->name("suratkeluar");
+    Route::get("suratkeluar",SuratKeluarIndex::class)->name("suratkeluar");
 
     Route::get('surat',Index::class)->name("pinjamsurat");
 
     Route::get("kelolauser",Show::class)->name("kelola");
 
-    Route::get("testing",TestingPage::class)->name("testing");
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
