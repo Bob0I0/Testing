@@ -30,6 +30,7 @@ class Dashboard extends Component
         }
 
         $this->formattedDate = $now->isoFormat('dddd, DD MMMM YYYY');
+        $this->currentTime = $now->isoFormat('HH:mm');
     }
     public function render()
     {
