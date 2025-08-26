@@ -11,15 +11,9 @@
 
             <div class="grid grid-cols-2 gap-4">
 
-                <flux:button 
-                    type="button" 
-                    variant="primary" color="green" 
-                    wire:loading.attr="disabled"
-                >
-                    <span wire:loading.remove wire:target="delete">Hapus</span>
-                    <span wire:loading wire:target="delete">Menghapus...</span>
-                </flux:button>
-
+                <flux:modal.close>  
+                    <flux:button wire:click="delete" variant="primary" color="green" class="w-full">Hapus</flux:button>
+                </flux:modal.close>
                 <flux:modal.close>
                     <flux:button variant="primary" color="red" class="w-full">Batal</flux:button>
                 </flux:modal.close>

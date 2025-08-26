@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("kelolauser",Show::class)->name("kelola");
 
+    Route::get("testing",TestingPage::class)->name("testing");
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');

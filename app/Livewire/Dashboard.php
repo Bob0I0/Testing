@@ -4,12 +4,15 @@ namespace App\Livewire;
 
 use Carbon\Carbon;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
     public $greeting;
     public $formattedDate;
-    public $currentTime;
+    public $jumlahPenggunaAktif;
+    public $totalSuratMasuk;
+    public $totalSuratKeluar;
 
     public function mount()
     {
@@ -30,8 +33,20 @@ class Dashboard extends Component
         }
 
         $this->formattedDate = $now->isoFormat('dddd, DD MMMM YYYY');
-        $this->currentTime = $now->isoFormat('HH:mm');
+
+        $activeSince = Carbon::now()->subMinutes(10)->timestamp;
+
+        $this->jumlahPenggunaAktif = DB::table('sessions')
+                                    ->whereNotNull('user_id')
+                                    ->where('last_activity', '>', $activeSince)
+                                    ->distinct()
+                                    ->count('user_id');
+        
+        $this->totalSuratMasuk = DB::table('surat_masuks')->count();
+        $this->totalSuratKeluar = DB::table('surat_keluars')->count();
+
     }
+    
     public function render()
     {
         return view('livewire.dashboard');

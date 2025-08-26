@@ -33,14 +33,11 @@ class FormSuratKeluar extends Form
     #[validate]
     public $file; 
 
-    // Properti untuk menyimpan path file yang sudah ada (bukan bagian dari form submission, tapi untuk logika update)
     public $existing_file = null; 
 
-    // Properti baru untuk nama file asli
     public $original_file_name;
 
-    // Properti untuk menyimpan path file yang sudah ada dari database (saat edit)
-    public $existing_file_path; // Ini akan digunakan saat edit/update
+    public $existing_file_path;
 
     // Properti baru untuk menunjukkan mode form (create atau edit)
     public $isEditMode = false; 
@@ -89,7 +86,6 @@ class FormSuratKeluar extends Form
         $filePath = null;
         $originalFileName = null;
 
-        // Karena ini mode create, file pasti ada jika validasi 'required' lolos
         if ($this->file) {
             $extension = $this->file->getClientOriginalExtension();
             $originalFileName = $this->file->getClientOriginalName();
@@ -111,7 +107,7 @@ class FormSuratKeluar extends Form
     // Metode setSuratKeluar tetap sama untuk edit
     public function setSuratKeluar($suratKeluar)
     {
-        $this->isEditMode = true; // Set mode ke edit saat mengisi form
+        $this->isEditMode = true; 
         $this->suratKeluarIdToIgnore = $suratKeluar->id; 
         $this->nomor_surat = $suratKeluar->nomor_surat;
         $this->tujuan_surat = $suratKeluar->tujuan_surat;
@@ -123,39 +119,30 @@ class FormSuratKeluar extends Form
         $this->file = null;
     }
 
-
-
     // Metode untuk menyimpan atau memperbarui data ke database
-    public function update(SuratKeluar $surat) // Menerima instance model yang akan diupdate
+    public function update(SuratKeluar $surat) 
     {
         $this->isEditMode = true;
         $this->suratKeluarIdToIgnore = $surat->id;
-        $this->validate(); // Lakukan validasi menggunakan aturan Validate di atas
+        $this->validate(); 
         
         $dateFromInput = trim($this->tanggal_surat);
         $formattedDate =  date("Y-m-d", strtotime($dateFromInput));
 
-        $filePathToSave = $this->existing_file_path; // Path unik file yang sudah ada
+        $filePathToSave = $this->existing_file_path; 
         $originalFileNameToSave = $this->original_file_name; 
-        // Handle upload file baru
+    
         if ($this->file) {
             if (!empty($surat->file) && Storage::disk('public')->exists(str_replace('public/', '', $surat->file))) {
                 Storage::disk('public')->delete(str_replace('public/', '', $surat->file));
             }
 
-            $extension = $this->file->getClientOriginalExtension(); // Dapatkan ekstensi file baru
-            $originalFileNameToSave = $this->file->getClientOriginalName(); // Dapatkan nama asli file baru
-            $uniqueFileName = \Illuminate\Support\Str::uuid() . '.' . $extension; // Buat nama unik untuk file baru
-            $filePathToSave = $this->file->storeAs('public/file_SKeluar', $uniqueFileName); // Simpan file ke storage
+            $extension = $this->file->getClientOriginalExtension(); 
+            $originalFileNameToSave = $this->file->getClientOriginalName(); 
+            $uniqueFileName = \Illuminate\Support\Str::uuid() . '.' . $extension; 
+            $filePathToSave = $this->file->storeAs('public/file_SKeluar', $uniqueFileName); 
         }
-        // dd([
-        //     'filePathToSave' => $filePathToSave,
-        //     'originalFileNameToSave' => $originalFileNameToSave,
-        //     'isNewFileUploaded' => (bool) $this->file, // Untuk memastikan kondisi if($this->file) terpenuhi
-        //     'formOriginalFileName' => $this->original_file_name, // Nilai properti form sebelum update
-        //     'formExistingFilePath' => $this->existing_file_path, // Nilai properti form sebelum update
-        // ]);
-        // Update data model
+
         $surat->update([
             "nomor_surat" => $this->nomor_surat,
             "tujuan_surat" => $this->tujuan_surat,

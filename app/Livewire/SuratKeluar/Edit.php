@@ -5,7 +5,7 @@ namespace App\Livewire\SuratKeluar;
 use App\Models\SuratKeluar;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Livewire\Forms\FormSuratKeluar; // Import Form Object Anda
+use App\Livewire\Forms\FormSuratKeluar;
 
 class Edit extends Component
 {
@@ -36,10 +36,6 @@ class Edit extends Component
 
         session()->flash('message', 'Data berhasil diperbarui.');
 
-        // // Dispatch event untuk menutup modal Flux
-        // $this->dispatch('close-modal', 'edit-'.$this->suratKeluarId);
-
-        // Dispatch event ke komponen Show untuk me-refresh tabel
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class);
         return redirect()->to('/suratkeluar');
         $this->form->reset();

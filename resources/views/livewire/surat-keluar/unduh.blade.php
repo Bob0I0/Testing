@@ -11,13 +11,12 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-
-                <flux:button wire:click="download({{ $suratId }})" variant="primary" color="green" type="submit" class="w-full"> Unduh</flux:button>
-
+                <flux:modal.close>
+                    <flux:button wire:click="download({{ $suratId }})" variant="primary" color="green" type="submit" class="w-full"> Unduh</flux:button>
+                </flux:modal.close>
                 <flux:modal.close>
                     <flux:button variant="primary" color="red" class="w-full">Batal</flux:button>
                 </flux:modal.close>
-
             </div>
         </div>
     </flux:modal>

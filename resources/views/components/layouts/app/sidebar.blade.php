@@ -20,7 +20,6 @@
                         href="{{ route('suratmasuk') }}"
                         :icon="request()->routeIs('suratmasuk') ? 'doton' : 'dotoff'"
                         :dot-icon="true"
-                        wire:navigate
                     >
                         Surat Masuk
                     </flux:navlist.item>
@@ -28,17 +27,16 @@
                         href="{{ route('suratkeluar') }}"
                         :icon="request()->routeIs('suratkeluar') ? 'doton' : 'dotoff'"
                         :dot-icon="true"
-                        wire:navigate
                     >
                         Surat Keluar
                     </flux:navlist.item>
                 </flux:navlist.group>
                 
                 <flux:separator class="my-1"/>
-                <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" wire:navigate>{{ __('Surat') }}</flux:navlist.item>
+                <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" >{{ __('Surat') }}</flux:navlist.item>
                 <flux:separator class="my-1"/>
 
-                <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" wire:navigate>{{ __('Kelola User') }}</flux:navlist.item>
+                <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" >{{ __('Kelola User') }}</flux:navlist.item>
             </flux:navlist>
 
             <flux:spacer />

@@ -18,26 +18,10 @@ class Create extends Component
 
         $this->form->create();
         return redirect()->to('/suratkeluar');
-        session()->flash('berhasil', 'Data berhasil ditambahkan.');
         $this->form->reset();
         $this->resetValidation();
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class);
-       
 
-        // $this->validate();
-        // $dateFromInput = trim($this->form->tanggal_surat);
-        // $formattedDate =  date("Y-m-d", strtotime($dateFromInput));
-        // SuratKeluar::create([
-        //     "nomor_surat" => $this->form->nomor_surat,
-        //     "tujuan_surat" => $this->form->tujuan_surat, 
-        //     "perihal" => $this->form->perihal, 
-        //     "tanggal_surat" => $formattedDate,
-        //     "jenis_surat" => $this->form->jenis_surat,
-        //     "file" => $this->form->file->store(path:'public/file_SKeluar')
-        // ]);
-        // $this->showModal = false;
-        // $this->resetForm();
-        // // $this->redirect('/suratkeluar');
     }
     public function resetForm()
     {

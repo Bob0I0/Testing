@@ -11,11 +11,18 @@
                 <flux:text class="mt-2">Make changes to your personal details.</flux:text>
             </div>
 
-            <flux:field >
-                <flux:label>Tanggal Masuk</flux:label>
-                <flux:input class:input="form-control dateee" icon:trailing="calendar" wire:model.blur="form.tanggal_surat" type="text" placeholder="dd-mm-yyyy"/>
-                <flux:error name="form.tanggal_surat" />
-            </flux:field>
+                <flux:input
+                    id="tanggal_awal"
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    icon:trailing="calendar"
+                    datepicker
+                    datepicker-autohide
+                    datepicker-format="dd-mm-yyyy"
+                    datepicker-orientation="top"
+                    data-dropdown-parent="body"
+                />
+            
             <flux:input label="Date of birth" type="date" />
             
 
@@ -40,6 +47,7 @@
         <flux:input class:input="form-control dateee" icon:trailing="calendar" wire:model.blur="form.tanggal_surat" type="text" placeholder="dd-mm-yyyy"/>
         <flux:error name="form.tanggal_surat" />
     </flux:field>
+
     
 </div>
 @script

@@ -7,7 +7,6 @@
                     <div class="flex flex-col justify-start h-full">
                         <h1 class="truncate text-2xl font-semibold text-zinc-800 dark:text-zinc-200">{{ $greeting }} {{ auth()->user()->name }}</h1>
                         <p class="truncate text-sm text-gray-500 dark:text-zinc-300">{{ $formattedDate }}</p>
-                        <p class="truncate text-sm text-gray-500 dark:text-zinc-300">{{ $currentTime }}</p>
                     </div>
                     <img src="{{ asset('images/Person.png') }}" alt="Dashboard Image" class="h-full w-auto object-contain rounded-lg ml-4">
                 </div>
@@ -21,7 +20,7 @@
                         </div>
                         <div class="flex flex-col items-center justify-center mt-8">
                             <h1 class="text-lg font-semibold text-center text-zinc-800 dark:text-zinc-200">{{ 'Surat Masuk' }}</h1>
-                            <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ '0' }}</p>
+                            <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ $totalSuratMasuk }}</p>
                         </div>
                     </div>
 
@@ -31,7 +30,7 @@
                         </div>
                         <div class="flex flex-col items-center justify-center mt-8">
                             <h1 class="text-lg font-semibold text-center text-zinc-800 dark:text-zinc-200">{{ 'Surat Keluar' }}</h1>
-                            <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ '0' }}</p>
+                            <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ $totalSuratKeluar }}</p>
                         </div>
                     </div>
                 </div>
@@ -42,7 +41,7 @@
                     </div>
                     <div class="flex flex-col items-center justify-center mt-8">
                         <h1 class="text-lg font-semibold text-center text-zinc-800 dark:text-zinc-200">{{ 'Pengguna Aktif' }}</h1>
-                        <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ '0' }}</p>
+                        <p class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200">{{ $jumlahPenggunaAktif }}</p>
                     </div>
                 </div>
             </div>

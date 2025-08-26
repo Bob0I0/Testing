@@ -12,14 +12,12 @@ class Show extends Component
 {
     use WithPagination;
 
-    // Properti untuk menyimpan nilai filter yang diterima dari komponen Filter
-    public $search;
+    public $search = '';
     
-    // Metode ini akan dipanggil ketika event 'suratUpdated' diterima
     #[On('suratUpdated')]
     public function refreshTable()
     {
-        $this->resetPage(); // Reset halaman paginasi ke 1 setelah refresh
+        $this->resetPage();
     }
 
     #[Computed]
@@ -35,22 +33,6 @@ class Show extends Component
 
     public function render()
     {
-        // $query = SuratKeluar::query();
-
-        // // Hanya tambahkan klausa 'where' jika $this->search tidak kosong
-        // if (!empty($this->search)) {
-        //     $query->where('nomor_surat', 'like', "%{$this->search}%");
-        // }
-        // $data = $query->latest()->paginate(5);
-
         return view('livewire.surat-keluar.show');
-        // // Terapkan filter pencarian
-        // if (!empty($this->search)) {
-        //     $query->where(function($q) {
-        //         $q->where('nomor_surat', 'like', '%' . $this->search . '%');
-        //         //   ->orWhere('tujuan_surat', 'like', '%' . $this->search . '%')
-        //         //   ->orWhere('perihal', 'like', '%' . $this->search . '%')
-        //         //   ->orWhere('jenis_surat', 'like', '%' . $this->search . '%');
-        //     });
     }
 }

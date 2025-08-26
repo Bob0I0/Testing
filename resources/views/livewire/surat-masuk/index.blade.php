@@ -74,31 +74,31 @@
     <!-- Table Index -->
     <div class="overflow-x-auto my-3 bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
         <livewire:surat-masuk.create />
-        <table class="table-fixed min-w-full my-3 border-gray-300 text-sm">
+        <table class="table-fixed min-w-full my-3 border border-gray-300 dark:bg-zinc-600 text-sm">
             <thead class="bg-cyan-900 text-white text-left">
-                <tr>
-                    <th class="border px-3 py-1 w-12">No</th>
-                    <th class="border px-3 py-1 w-40">Nomor Surat</th>
-                    <th class="border px-3 py-1 w-48">Tujuan Surat</th>
-                    <th class="border px-3 py-1 w-32">Tanggal Surat</th>
-                    <th class="border px-3 py-1">Perihal</th>
-                    <th class="border px-3 py-1 w-36">Jenis Surat</th>
-                    <th class="border px-3 py-1 w-28 text-center">Aksi</th>
+                <tr class="text-zinc-50">
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">No</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-40">Nomor Surat</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-48">Tujuan Surat</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-32">Tanggal Surat</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">Perihal</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-36">Jenis Surat</th>
+                    <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28 text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($this->SuratMasukIndex as $key => $surat)
-                    <tr>
-                        <td class="border px-3 py-1 text-center">{{ $this->SuratMasukIndex->firstItem() + $key }}</td>
-                        <td class="border px-3 py-1">{{ $surat->nomor_surat }}</td>
-                        <td class="border px-3 py-1">{{ $surat->asal_surat }}</td>
-                        <td class="border px-3 py-1">{{ $surat->tanggal_surat->format('d-m-Y') }}</td>
-                        <td class="border px-3 py-1 break-words max-w-xs">{{ $surat->perihal }}</td>
-                        <td class="border px-3 py-1">{{ $surat->jenis_surat }}</td>
-                        <td class="border px-3 py-1">
+                    <tr class="text-zinc-900 dark:text-zinc-50">
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 text-center">{{ $this->SuratMasukIndex->firstItem() + $key }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->nomor_surat }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->asal_surat }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->tanggal_surat->format('d-m-Y') }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 break-words max-w-xs">{{ $surat->perihal }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->jenis_surat }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">
                             <flux:button.group>
 
-                                <flux:button icon="edit" variant="subtle" data-modal-target="editSM-{{ $surat->id }}" data-modal-toggle="edit-SM-{{ $surat->id }}"></flux:button>
+                                <flux:button icon="edit" variant="subtle" data-modal-target="editSM-{{ $surat->id }}" data-modal-toggle="editSM-{{ $surat->id }}"></flux:button>
 
                                 <flux:modal.trigger name="deleteSM-{{ $surat->id }}">
                                     <flux:button icon="trash" variant="subtle"></flux:button>
@@ -116,13 +116,13 @@
 
                 @empty
                     <tr>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
-                        <td class="border px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
                     </tr>
                 @endforelse
             </tbody>
@@ -131,12 +131,9 @@
             {{ $this->SuratMasukIndex->links('vendor.pagination.custom-pagi') }}
         </div>
     </div> 
-    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'editSM-' + editingId) editingId = $event.detail.substring(5)">
 
+    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'editSM-' + editingId) editingId = $event.detail.substring(5)">
         @foreach ($this->SuratMasukIndex as $surat)
-            {{-- Render komponen Livewire Edit untuk setiap surat di dalam modal masing-masing --}}
-            {{-- Name modal harus cocok dengan name trigger --}}
-                {{-- Gunakan :key untuk memastikan Livewire merender ulang komponen ketika ID surat berubah --}}
                 <livewire:surat-masuk.edit :surat-id="$surat->id" :key="'edit-form-'.$surat->id" />
         @endforeach
     </div>

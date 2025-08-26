@@ -33,16 +33,12 @@ class FormSuratMasuk extends Form
     #[validate]
     public $file; 
 
-    // Properti untuk menyimpan path file yang sudah ada (bukan bagian dari form submission, tapi untuk logika update)
     public $existing_file = null; 
 
-    // Properti baru untuk nama file asli
     public $original_file_name;
 
-    // Properti untuk menyimpan path file yang sudah ada dari database (saat edit)
-    public $existing_file_path; // Ini akan digunakan saat edit/update
+    public $existing_file_path; 
 
-    // Properti baru untuk menunjukkan mode form (create atau edit)
     public $isEditMode = false; 
     public $suratMasukIdToIgnore = null;
     
@@ -133,10 +129,10 @@ class FormSuratMasuk extends Form
                 Storage::disk('public')->delete(str_replace('public/', '', $surat->file));
             }
 
-            $extension = $this->file->getClientOriginalExtension(); // Dapatkan ekstensi file baru
-            $originalFileNameToSave = $this->file->getClientOriginalName(); // Dapatkan nama asli file baru
-            $uniqueFileName = \Illuminate\Support\Str::uuid() . '.' . $extension; // Buat nama unik untuk file baru
-            $filePathToSave = $this->file->storeAs('public/file_SKeluar', $uniqueFileName); // Simpan file ke storage
+            $extension = $this->file->getClientOriginalExtension();
+            $originalFileNameToSave = $this->file->getClientOriginalName();
+            $uniqueFileName = \Illuminate\Support\Str::uuid() . '.' . $extension;
+            $filePathToSave = $this->file->storeAs('public/file_SKeluar', $uniqueFileName);
         }
         $surat->update([
             "nomor_surat" => $this->nomor_surat,
