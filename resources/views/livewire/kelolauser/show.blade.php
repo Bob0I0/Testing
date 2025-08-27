@@ -8,7 +8,7 @@
             <h1 class="text-2xl font-semibold">{{ __('Kelola User') }}</h1>
         </div>
         
-        <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm border">
+        <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
             <div class="card-body my-3">
 
                 <livewire:kelolauser.create />

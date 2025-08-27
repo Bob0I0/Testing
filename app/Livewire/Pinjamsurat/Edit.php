@@ -28,12 +28,11 @@ class Edit extends Component
         $this->form->update($surat); 
 
         session()->flash('message', 'Data berhasil diperbarui.');
-
-        // Dispatch event ke komponen Show untuk me-refresh tabel
-        $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
-        return redirect()->to('/surat');
         $this->form->reset();
         $this->resetValidation(); 
+        $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
+        return redirect()->to('/surat');
+
     }
     public function render()
     {

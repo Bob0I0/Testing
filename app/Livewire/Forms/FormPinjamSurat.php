@@ -26,8 +26,6 @@ class FormPinjamSurat extends Form
     #[Validate('after_or_equal:tanggal_pinjam', message: 'Wajib hari pinjam atau sesudahnya')]
     public $tanggal_kembali;
 
-    public $status;
-
     public function create(): PinjamSurat
     {
         $this->validate();

@@ -5,54 +5,44 @@ namespace App\Livewire\Pinjamsurat;
 use App\Livewire\Forms\FormPinjamSurat;
 use App\Models\PinjamSurat;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Status extends Component
 {
-    public $status = 'Pinjam'; 
     public FormPinjamSurat $form;
-
+    
     public $pinjamSuratId;
+    public $status = 'Pinjam';
 
-    public function setStatusSelesai()
+    public function mount($suratId)
     {
-        $this->status = 'Selesai';
+        $this->pinjamSuratId = $suratId;
+        $surat = PinjamSurat::findOrFail($suratId);
 
+        $this->status = $surat->tanggal_kembali ? 'Selesai' : 'Pinjam';
+        $this->form->tanggal_kembali = $surat->form?->tanggal_kembali?->format('d-m-Y');
     }
 
-    // public function mount($suratId) 
-    // {
-    //     $this->pinjamSuratId = $suratId;
-        
-    //     PinjamSurat::findOrFail($suratId); 
-    // }
-    public function updatekembali()
+    public function updateKembali()
     {
-        $this->validate([
-            'tanggal_kembali' => 'required|after_or_equal:tanggal_pinjam',
-        ]);
-
         $surat = PinjamSurat::findOrFail($this->pinjamSuratId);
 
-        $dateFromInput2 = trim($this->tanggal_kembali);
-        $formattedDate2 =  date("Y-m-d", strtotime($dateFromInput2));
-        
-        $surat->form->update([
-            'tanggal_kembali' => $this->$formattedDate2,
-        ]);
-        
-        $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
+        $this->form->tanggal_pinjam = $surat->tanggal_pinjam->format('d-m-Y');
 
-        session()->flash('message', 'Pengembalian berhasil dicatat.');
-        $this->form->reset();
+        $this->validateOnly('form.tanggal_kembali');
+
+        $surat->tanggal_kembali = Carbon::createFromFormat('d-m-Y', $this->form->tanggal_kembali)->format('Y-m-d');
+        $surat->save();
+
+        $this->status = 'Selesai';
         $this->resetValidation();
         return redirect()->to('/surat');
     }
-    
+
     public function resetForm()
     {
-        $this->reset();
-
-        $this->resetValidation();
+        $this->form->tanggal_kembali = null;
+        $this->resetValidation('form.tanggal_kembali');
     }
 
     public function render()

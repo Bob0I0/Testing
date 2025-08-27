@@ -8,7 +8,7 @@
             <h1 class="text-2xl font-semibold">{{ __('Data Peminjaman dan Pengembalian Surat ') }}</h1>
         </div>
 
-        <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm border">
+        <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
             <div class="card-body my-3">
                 <livewire:pinjamsurat.create />
                 <table class="table-fixed min-w-full border border-gray-300 dark:bg-zinc-600 text-sm my-3">
