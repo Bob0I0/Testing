@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
+use App\Helpers\Flash;
 
 class Create extends Component
 {
@@ -27,8 +28,9 @@ class Create extends Component
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
-
+        Flash::success("berhasil Ditambah");
         $this->redirect(route('kelola'));
+        
     }
 
     public function resetForm()

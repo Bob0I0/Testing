@@ -45,16 +45,16 @@
                         </flux:field>
                         @if ($form->existing_file_path) {{-- Periksa properti existing_file_path --}}
                             <p class="text-sm text-gray-600 dark:text-gray-400">File saat ini: 
-                                <a href="{{ Storage::url($form->existing_file_path) }}" target="_blank" class="text-blue-500 hover:underline">
-                                    {{ $form->original_file_name ?? basename($form->existing_file_path) }} 
-                                </a>
+                                <span>
+                                    {{ $form->original_file_name ?? basename($form->existing_file_path) }}
+                                </span>
                             </p>
                         @endif
                         <!-- Modal Confirmation -->
                         <div class="flex">
                             <flux:modal.trigger name="persetujuan_editSM-{{ $suratMasukId }}">
                                 <flux:spacer />
-                                <flux:button variant="primary" color="green" type="button">Simpan</flux:button>
+                                <flux:button variant="primary" color="green" type="button" wire:loading.class="opacity-50" wire:loading.target="form.file" wire:loading.attr="disabled" wire.loading.remove>Simpan</flux:button>
                             </flux:modal.trigger>
                             
                             <flux:modal name="persetujuan_editSM-{{ $suratMasukId }}" class="md:w-96">
@@ -69,7 +69,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="editSM-{{ $suratMasukId }}">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                         
                                             <flux:button variant="danger" wire:close="persetujuan_editSM-{{ $suratMasukId }}" class="w-full">Batal</flux:button>
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-
+    @include('components.flash-messages')
 </div>
 @script
 <script type="text/javascript">

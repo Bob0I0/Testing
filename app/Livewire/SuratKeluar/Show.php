@@ -6,7 +6,7 @@ use App\Models\SuratKeluar;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\On; // Import Livewire Attributes untuk listener
+use Livewire\Attributes\On;
 
 class Show extends Component
 {

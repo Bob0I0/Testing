@@ -1,6 +1,6 @@
 <div>
     
-    <flux:input placeholder="Cari Berdasarkan Username" icon="magnifying-glass" type="text" name="search" wire:model.live.debounc.450mse="#" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
+    <flux:input placeholder="Cari Berdasarkan Nomor Surat" icon="magnifying-glass" type="text" name="search" wire:model.live.debounc.450mse="#" class="w-full text-lg shadow-sm rounded-xl mb-4"/>
     
     <div class="card flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         
@@ -25,27 +25,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-zinc-900 dark:text-zinc-50">
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">XXX/AA/UDDPNK/MM/YYYY</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">bagian kesehatan</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">bla bla bla ....</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">12-02-1900</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">20-03-2019</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4 text-center">
-                                <livewire:pinjamsurat.status />
-                            </td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4">
-                                <flux:button.group>
-                                    <flux:button icon="edit" variant="subtle"></flux:button>
+                        @forelse ($this->PinjamSurat as $key => $surat)
+                            <tr class="text-zinc-900 dark:text-zinc-50">
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $this->PinjamSurat->firstItem() + $key }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->nomor_surat }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->nama_peminjam }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->perihal }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->tanggal_pinjam->format('d-m-Y') }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->tanggal_kembali?->format('d-m-Y') }}</td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 text-center">
+                                    <livewire:pinjamsurat.status />
+                                </td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">
+                                    <flux:button.group>
+                                        <flux:button icon="edit" variant="subtle" data-modal-target="editPS-{{ $surat->id }}" data-modal-toggle="editPS-{{ $surat->id }}"></flux:button>
 
-                                    <flux:modal.trigger name="delete">
-                                        <flux:button icon="trash" variant="subtle"></flux:button>
-                                    </flux:modal.trigger>
-                                    
-                                </flux:button.group>
-                            </td>
-                        </tr>
+                                        <flux:modal.trigger name="deletePS-{{ $surat->id }}">
+                                            <flux:button icon="trash" variant="subtle"></flux:button>
+                                        </flux:modal.trigger>
+                                        <livewire:pinjamsurat.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="$surat->id" />
+                                    </flux:button.group>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                                <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-4"></td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 <div class="mt-5">
@@ -53,5 +65,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div x-data="{ editingId: null }" @open-modal.window="if ($event.detail === 'editPS-' + editingId) editingId = $event.detail.substring(5)">
+        @foreach ($this->PinjamSurat as $surat)
+            <livewire:pinjamsurat.edit :surat-id="$surat->id" :key="'edit-form-'.$surat->id" />
+        @endforeach
     </div>
 </div>

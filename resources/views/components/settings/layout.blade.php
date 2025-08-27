@@ -17,4 +17,6 @@
             {{ $slot }}
         </div>
     </div>
+@include('components.flash-messages')
+    
 </div>

@@ -6,14 +6,14 @@
     <body class="min-h-screen bg-[white] antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
         <div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
             <div class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-e dark:border-neutral-800">
-                <div class="absolute inset-0 bg-neutral-900" style="background: linear-gradient(to bottom right, #0ABAB5, #A8CECB);"></div>
+                <div class="absolute inset-0 bg-neutral-900" style="background: linear-gradient(to bottom right,var(--color-light-start), var(--color-light-end));"></div>
                 <div class="relative z-20 mt-0 flex-1">
                     <h1 class="font-bold text-5xl leading-tight">Sistem</h1>
                     <h1 class="font-bold text-5xl leading-tight">Informasi</h1>
                     <h1 class="font-bold text-5xl leading-tight">Pengarsipan Surat</h1>
                 </div>
             </div>
-            <div class="flex flex-col items-center justify-center w-full h-dvh p-6 bg-[#EEF9F9] text-gray-900 lg:p-8">
+            <div class="flex flex-col items-center justify-center w-full h-dvh p-6 bg-[#EEF9F9] text-gray-900 dark:bg-zinc-900 dark:text-white  lg:p-8">
                 {{ $slot }}
             </div>
         </div>

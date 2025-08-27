@@ -1,64 +1,25 @@
 <div>
-    <flux:modal.trigger name="edit-profile">
-        <flux:button>Edit profile</flux:button>
-    </flux:modal.trigger>
-
-    <flux:modal name="edit-profile" class="md:w-96" x-on:close.camel="$wire.resetForm()">
-
-        <div class="space-y-6">
-            <div>
-                <flux:heading size="lg">Update profile</flux:heading>
-                <flux:text class="mt-2">Make changes to your personal details.</flux:text>
-            </div>
-
-                <flux:input
-                    id="tanggal_awal"
-                    type="text"
-                    placeholder="dd/mm/yyyy"
-                    icon:trailing="calendar"
-                    datepicker
-                    datepicker-autohide
-                    datepicker-format="dd-mm-yyyy"
-                    datepicker-orientation="top"
-                    data-dropdown-parent="body"
-                />
-            
-            <flux:input label="Date of birth" type="date" />
-            
-
-            <div class="flex">
-                <flux:spacer />
-                <flux:modal.trigger name="confirm-edit">
-                    <flux:button type="button">Edit profile</flux:button>
-                </flux:modal.trigger>
-            </div>
-        </div>
-    </flux:modal>
-        <flux:modal name="confirm-edit" class="md:w-96">
-        <div class="space-y-6">
-            <div>
-                <flux:heading size="lg">Confirm</flux:heading>
-                <flux:text class="mt-2">sure?</flux:text>
-            </div>
-        </div>
-    </flux:modal>
-    <flux:field >
-        <flux:label>Tanggal Masuk</flux:label>
-        <flux:input class:input="form-control dateee" icon:trailing="calendar" wire:model.blur="form.tanggal_surat" type="text" placeholder="dd-mm-yyyy"/>
-        <flux:error name="form.tanggal_surat" />
-    </flux:field>
-
+    <flux:button wire:click='plas'>Button</flux:button>
     
+     {{-- <div class="alert alert-success">
+        {{$value}}
+     </div> --}}
+    @session("success")
+    <div id="toast" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="z-[9999] fixed top-10 right-10 flex items-center bg-white text-black text-sm font-medium px-4 py-3 rounded-lg shadow-lg border border-gray-300">
+        <!-- Success Icon -->
+        <div class="bg-green-100 p-1 rounded-full mr-3">
+            <svg class="w-5 h-5 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+
+        <!-- Message -->
+        <span>YOOO</span>
+
+        <!-- Close Button -->
+        <button onclick="document.getElementById('toast').remove()" class="ml-4 text-gray-500 hover:text-black">
+            ✕
+        </button>
+    </div>
+    @endsession
 </div>
-@script
-<script type="text/javascript">
-    $('.dateee').datepicker({
-        format: 'dd-mm-yyyy',
-        autoclose: true,
-        // todayHighlight: true,
-        language: 'id' 
-    }).on('changeDate', function(e) {
-        @this.set("form.tanggal_surat", e.target.value);
-    });
-</script>
-@endscript

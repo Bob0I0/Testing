@@ -51,7 +51,7 @@
                         <div class="flex">
                             <flux:modal.trigger name="confirm-create-surat-masuk">
                                 <flux:spacer />
-                                <flux:button variant="primary" color="green" type="button">Simpan</flux:button>
+                                <flux:button variant="primary" color="green" type="button" wire:loading.class="opacity-50" wire:loading.target="form.file" wire:loading.attr="disabled" wire.loading.remove>Simpan</flux:button>
                             </flux:modal.trigger>
                             
                             <flux:modal name="confirm-create-surat-masuk" class="md:w-96">
@@ -59,14 +59,13 @@
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
                                         <p><b class="font-extrabold">Masukkan Sudah Benar?</b></p>
-                                        {{-- <p class="text-sm mt-1">Surat dengan nomor <strong>{{ $nomorSurat }}</strong> --}}
                                         <p class="text-sm">Silakan periksa kembali sebelum</p>
                                         <p class="text-sm">menyimpan untuk menghindari kesalahan.</p>
                                     </flux:text>
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="createmasuk">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" wire:close="persetujuan" type="button" class="w-full">Batal</flux:button>
@@ -80,6 +79,7 @@
             </div>
         </div>
     </div>
+    @include('components.flash-messages')
 </div>
 
 @script

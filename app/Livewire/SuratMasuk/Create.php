@@ -2,6 +2,7 @@
 
 namespace App\Livewire\SuratMasuk;
 
+use App\Helpers\Flash;
 use App\Livewire\Forms\FormSuratMasuk;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -15,13 +16,12 @@ class Create extends Component
     public function simpan(){
 
         $this->form->create();
-        return redirect()->to('/suratmasuk');
-        session()->flash('berhasil', 'Data berhasil ditambahkan.');
         $this->form->reset();
         $this->resetValidation();
+        Flash::success("Surat Berhasil Ditambahkan");
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratMasuk\Index::class);
     }
-    
+
     public function resetForm()
     {
         $this->form->reset();

@@ -60,8 +60,8 @@ class FormSuratMasuk extends Form
     {
         return [
             'nomor_surat.required' => 'Wajib Di Isi ',
-            'nomor_surat.max:100'     => 'Tulisan melebihi batas',
-            'nomor_surat.unique'     => 'Nomor surat ini sudah ada',
+            'nomor_surat.max:100' => 'Tulisan melebihi batas',
+            'nomor_surat.unique' => 'Nomor surat ini sudah ada',
             'file.required' => 'File surat wajib diunggah',
             'file.mimes' => 'File wajib berformat PDF',
             'file.max' => 'Ukuran file melebihi batas (maks 2MB)',

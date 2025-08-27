@@ -2,6 +2,7 @@
 
 namespace App\Livewire\SuratKeluar;
 
+use App\Helpers\Flash;
 use App\Models\SuratKeluar;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -33,12 +34,9 @@ class Edit extends Component
     {
         $surat = SuratKeluar::findOrFail($this->suratKeluarId);
         $this->form->update($surat); 
-
-        session()->flash('message', 'Data berhasil diperbarui.');
-
-        $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class);
-        return redirect()->to('/suratkeluar');
         $this->form->reset();
-        $this->resetValidation(); 
+        $this->resetValidation();
+        Flash::success("Surat Berhasil Diedit");
+        $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class);
     }
 }

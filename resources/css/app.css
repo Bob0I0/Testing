@@ -40,6 +40,8 @@
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
     --icon-color: #292D32;
+    --color-light-start: #0ABAB5;
+    --color-light-end: #A8CECB;
 }
 
 @layer theme {
@@ -48,6 +50,8 @@
         --color-accent-content: var(--color-white);
         --color-accent-foreground: var(--color-neutral-800);
         --icon-color: var(--color-neutral-300);
+        --color-light-start: #0ABAB5;
+        --color-light-end: var(--color-zinc-900); 
     }
 }
 
