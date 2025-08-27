@@ -19,16 +19,18 @@ class Index extends Component
     {
         $this->resetPage();
     }
-    
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     #[Computed]
     public function PinjamSurat(){
         $query = PinjamSurat::query();
-        return $query
-            ->when($this->search, function($query){
-                $query->where('nomor_surat', 'like', "%{$this->search}%");
-            })
-            ->latest()
-            ->paginate(5);
+        $query->when($this->search, function ($query) {
+            $query->where('nomor_surat', 'like', "%{$this->search}%");
+        });
+        return $query->latest()->paginate(5);
     }
 
     public function render()
