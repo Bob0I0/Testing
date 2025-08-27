@@ -1,4 +1,8 @@
 <div>
+    <flux:modal.trigger name="deleteSM-{{ $suratId  }}">
+        <flux:button icon="trash" variant="subtle"></flux:button>
+    </flux:modal.trigger>
+
     <flux:modal name="deleteSM-{{ $suratId }}" class="md:w-100" title="Konfirmasi Hapus Data Surat Masuk">
         <div class="space-y-6">
 

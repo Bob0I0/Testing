@@ -1,4 +1,8 @@
 <div>
+    <flux:modal.trigger name="download_SKeluar-{{ $suratId }}">
+        <flux:button icon="receive" variant="subtle"></flux:button>
+    </flux:modal.trigger>
+
     <flux:modal name="download_SKeluar-{{ $suratId }}" class="min-w-[28rem]">
         <div class="space-y-4">
             <div>

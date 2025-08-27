@@ -36,9 +36,6 @@ class Delete extends Component
 
         $surat->delete(); // Hapus record dari database
 
-        // Berikan pesan sukses ke sesi flash - PASTIKAN PESAN SESUAI DENGAN SuratKeluar
-        session()->flash('message', 'Surat Keluar dengan nomor ' . $this->nomorSurat . ' berhasil dihapus.');
-
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class); 
 
     }

@@ -16,14 +16,15 @@ class Edit extends Component
 
     public $suratKeluarId;
 
-    public function mount($suratId) 
+    public function mount($suratId)
     {
         $this->suratKeluarId = $suratId;
-        
-        $surat = SuratKeluar::findOrFail($suratId); 
+
+        $surat = SuratKeluar::findOrFail($suratId);
 
         $this->form->setSuratKeluar($surat);
     }
+
 
     public function render()
     {
