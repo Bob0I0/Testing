@@ -1,30 +1,26 @@
 <div>
     <!-- Modal toggle -->
-    <flux:button data-modal-target="createuser" data-modal-toggle="createuser" variant="primary" color="cyan">
-    Tambah Data
-    </flux:button>
+    <flux:button data-modal-target="editUser-{{ $user->id }}" data-modal-toggle="editUser-{{ $user->id }}" icon="edit" variant="subtle"></flux:button>
 
     <!-- Main modal -->
-    <div wire:ignore.self id="createuser" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="editUser-{{ $user->id }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                 
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5">
-                    
                     <flux:heading size="xl" level="1" variant="strong">
-                        <strong>{{ __('Tambah Data Pengguna') }}</strong>
+                        <strong>{{ __('Edit Data Pengguna') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="createuser">
+                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="editUser-{{ $user->id }}">
                     </flux:button>
-
                 </div>
 
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form wire:submit="createacc" class="flex flex-col gap-6">
+                    <form wire:submit.prevent="updateacc" class="flex flex-col gap-6">
                         <!-- Name -->
                         <flux:input
                             wire:model="name"
@@ -36,7 +32,7 @@
                             :placeholder="__('Full name')"
                         />
 
-                        <!-- Email Address -->
+                        <!-- Username -->
                         <flux:input
                             wire:model="username"
                             :label="__('Username')"
@@ -50,28 +46,28 @@
                             <!-- Password -->
                             <flux:input
                                 wire:model="password"
-                                :label="__('Password')"
+                                :label="__('Password Baru (opsional)')"
                                 type="password"
-                                required
                                 autocomplete="new-password"
-                                :placeholder="__('Password')"
+                                :placeholder="__('Password baru')"
                                 viewable
                             />
 
                             <!-- Confirm Password -->
                             <flux:input
                                 wire:model="password_confirmation"
-                                :label="__('konfirmasi password')"
+                                :label="__('Konfirmasi Password')"
                                 type="password"
-                                required
                                 autocomplete="new-password"
-                                :placeholder="__('konfirmasi password')"
+                                :placeholder="__('Konfirmasi password')"
                                 viewable
                             />
                         </div>
+
+                        <!-- Level / Industry -->
                         <flux:field>
                             <flux:label>Level</flux:label>
-                            <flux:select wire:model="#" :chevron="false" placeholder="Choose industry...">
+                            <flux:select wire:model="industry" :chevron="false" placeholder="Choose industry...">
                                 <flux:select.option>Photography</flux:select.option>
                                 <flux:select.option>Design services</flux:select.option>
                                 <flux:select.option>Web development</flux:select.option>
@@ -82,7 +78,7 @@
                         <div class="flex items-center justify-end">
                             <flux:modal.trigger name="persetujuan">
                                 <flux:spacer />
-                                <flux:button variant="primary" color="green" class="w-[50%]" type="button" >Simpan</flux:button>
+                                <flux:button variant="primary" color="green" class="w-[50%]" type="button">Simpan</flux:button>
                             </flux:modal.trigger>
                             
                             <flux:modal name="persetujuan" class="md:w-96">

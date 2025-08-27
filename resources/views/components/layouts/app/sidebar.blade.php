@@ -35,7 +35,8 @@
                 <flux:separator class="my-1"/>
                 <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" >{{ __('Surat') }}</flux:navlist.item>
                 <flux:separator class="my-1"/>
-
+                <flux:navlist.item icon="finger-print" :href="route('izin')" :current="request()->routeIs('izin')" >{{ __('Perizinan') }}</flux:navlist.item>
+                <flux:separator class="my-1"/>
                 <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" >{{ __('Kelola User') }}</flux:navlist.item>
             </flux:navlist>
 

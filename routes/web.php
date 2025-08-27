@@ -1,8 +1,9 @@
 <?php
 
 use App\Livewire\Dashboard;
+use App\Livewire\Izin\Index as IzinIndex;
 use App\Livewire\Kelolauser\Show;
-use App\Livewire\Pinjamsurat\Index;
+use App\Livewire\Pinjamsurat\Index as PinjamSuratIndex;
 use App\Livewire\SuratKeluar\Show as SuratKeluarIndex;
 use App\Livewire\SuratMasuk\Index as SuratMasukIndex;
 use App\Livewire\TestingPage;
@@ -29,7 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("suratkeluar",SuratKeluarIndex::class)->name("suratkeluar");
 
-    Route::get('surat',Index::class)->name("pinjamsurat");
+    Route::get('surat',PinjamSuratIndex::class)->name("pinjamsurat");
+
+    Route::get("izin",IzinIndex::class)->name("izin");
 
     Route::get("kelolauser",Show::class)->name("kelola");
 

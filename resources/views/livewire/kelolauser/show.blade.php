@@ -25,20 +25,15 @@
                     </thead>
                     <tbody>
                         @forelse ($this->datauser as $key => $user)
-                        <tr class="text-zinc-900 dark:text-zinc-50">
+                        <tr class="text-zinc-900 dark:text-zinc-50" wire:key="user-{{ $user->id }}">
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">{{ $this->datauser->firstItem() + $key }}</td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->name }}</td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->username }}</td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">Level</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">
-                                
+                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
                                 <flux:button.group>
-                                    <flux:button icon="edit" variant="subtle"></flux:button>
-
-                                    <flux:modal.trigger name="delete">
-                                        <flux:button icon="trash" variant="subtle"></flux:button>
-                                    </flux:modal.trigger>
-                                    
+                                    <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
+                                    <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
                                 </flux:button.group>
                             </td>
                         </tr>

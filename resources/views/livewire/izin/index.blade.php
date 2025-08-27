@@ -1,0 +1,48 @@
+<div>
+    <div class="card-header">
+        <h1 class="text-2xl font-semibold">{{ __('Kelola Perizinan Level') }}</h1>
+    </div>
+    <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm my-6">
+        <div class="card-body my-3">
+
+            <livewire:izin.create />
+
+            <table class="table-fixed min-w-[2/3] border border-gray-300 dark:bg-zinc-600 text-sm my-3">
+                <thead class="bg-cyan-900 text-white text-left">
+                    <tr class="text-zinc-50">
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">No</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">Level</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">Perizinan</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28 text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- @forelse ($this->datauser as $key => $user)
+                    <tr class="text-zinc-900 dark:text-zinc-50" wire:key="user-{{ $user->id }}">
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">{{ $this->datauser->firstItem() + $key }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->name }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->username }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">Level</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
+                            <flux:button.group>
+                                <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
+                                <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
+                            </flux:button.group>
+                        </td>
+                    </tr>
+                    @empty --}}
+                    <tr>
+                        <td class="border px-3 py-4"></td>
+                        <td class="border px-3 py-4"></td>
+                        <td class="border px-3 py-4"></td>
+                        <td class="border px-3 py-4"></td>
+                    </tr>
+                    {{-- @endforelse --}}
+                </tbody>
+            </table>
+            <div class="mt-5">
+                {{-- {{ $this->datauser->links('vendor.pagination.custom-pagi') }} --}}
+            </div>
+        </div>
+    </div>
+</div>
