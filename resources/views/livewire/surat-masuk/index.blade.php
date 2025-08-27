@@ -13,8 +13,8 @@
     <div class="card">
         <div class="card-header">
             <div class="rounded-xl bg-white dark:bg-zinc-700 p-4 shadow-sm">
-                <div class="grid grid-cols-7 items-end gap-4">
-                    {{-- Kolom 1-2: Tanggal Awal (mengambil 2 kolom dari 6) --}}
+                <div class="grid grid-cols-6 items-end gap-4">
+                    {{-- Kolom 1-2: Tanggal Awal --}}
                     <div class="col-span-2 flex items-center gap-2">
                         <label for="tanggal_awal" class="font-medium">Tanggal Awal</label>
                         <flux:field>
@@ -30,9 +30,9 @@
                             <flux:error name="tanggalAwal" />
                         </flux:field>
                     </div>
-
+                    {{-- Kolom 3: Jarak --}}
                     <div class="col-span-1"></div>
-                    {{-- Kolom 3-4: Tanggal Akhir (mengambil 2 kolom dari 6) --}}
+                    {{-- Kolom 4-5: Tanggal Akhir --}}
                     <div class="col-span-2 flex items-center gap-2">
                         <label for="tanggal_akhir" class="font-medium">Tanggal Akhir</label>
                         <flux:field>
@@ -48,8 +48,7 @@
                             <flux:error name="tanggalAkhir" />
                         </flux:field>
                     </div>
-                    
-                    {{-- Kolom 6: Tombol Cari Surat (mengambil 1 kolom dari 6) --}}
+                    {{-- Kolom 6: Tombol Reset --}}
                     <div class="col-span-1 flex justify-end">
                         <flux:button 
                             variant="danger"
@@ -59,23 +58,11 @@
                             Reset
                         </flux:button>
                     </div>
-                    {{-- Kolom 6: Tombol Cari Surat (mengambil 1 kolom dari 6) --}}
-                    <div class="col-span-1 flex justify-end">
-                        <flux:button 
-                            variant="primary" color="cyan"
-                            class="w-full h-auto py-2.5" 
-                            wire:click="cariSurat"
-                        >
-                            Cari Surat
-                        </flux:button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-    
     <!-- Table Index -->
     <div class="overflow-x-auto my-3 bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
         <livewire:surat-masuk.create />
