@@ -57,7 +57,7 @@
                     </tbody>
                 </table>
                 <div class="mt-5">
-                    {{-- {{ $this->datauser->links('vendor.pagination.custom-pagi') }} --}}
+                    {{ $this->PinjamSurat->links('vendor.pagination.custom-pagi') }}
                 </div>
             </div>
         </div>
