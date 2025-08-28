@@ -21,7 +21,7 @@ class Create extends Component
         $this->form->reset();
         $this->resetValidation();
         Flash::success("Surat Berhasil Ditambah");
-        return redirect()->to('/suratkeluar');
+        $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class);
 
     }
     public function resetForm()
