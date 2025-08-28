@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pinjamsurat;
 
+use App\Helpers\Flash;
 use App\Models\PinjamSurat;
 use Livewire\Component;
 
@@ -21,12 +22,7 @@ class Delete extends Component
         $surat = PinjamSurat::findOrFail($this->suratId); 
         $surat->delete(); 
 
-        // Berikan pesan sukses ke sesi flash - PASTIKAN PESAN SESUAI DENGAN SuratKeluar
-        session()->flash('message', 'Surat Keluar dengan nomor ' . $this->nomorSurat . ' berhasil dihapus.');
-
-        // Kirim event ke komponen induk (misalnya komponen 'Show' yang menampilkan daftar)
-        // agar memperbarui daftar datanya setelah item dihapus.
-        // Gunakan event yang sama dengan yang didispatch dari komponen Edit untuk me-refresh tabel Show.
+        Flash::success("Surat Berhasil dihapus");
         $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
 
     }

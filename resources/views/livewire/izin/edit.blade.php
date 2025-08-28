@@ -1,11 +1,9 @@
 <div>
     <!-- Modal toggle -->
-    <flux:button data-modal-target="createizin" data-modal-toggle="createizin" variant="primary" color="cyan">
-    Tambah Level
-    </flux:button>
+    <flux:button data-modal-target="editizin-{{ $izinId }}" data-modal-toggle="editizin-{{ $izinId }}" icon="edit" variant="subtle"></flux:button>
 
     <!-- Main modal -->
-    <div wire:ignore.self id="createizin" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="editizin-{{ $izinId }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -14,17 +12,17 @@
                 <div class="flex items-center justify-between p-4 md:p-5">
                     
                     <flux:heading size="xl" level="1" variant="strong">
-                        <strong>{{ __('Tambah Level Pengguna') }}</strong>
+                        <strong>{{ __('Edit Level Pengguna') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="createizin">
+                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="editizin-{{ $izinId }}">
                     </flux:button>
 
                 </div>
 
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form wire:submit="createizin" class="flex flex-col gap-6">
+                    <form wire:submit="updateizin" class="flex flex-col gap-6">
                         <!-- Name -->
                         <flux:input
                             wire:model="name"
@@ -46,12 +44,12 @@
 
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">
-                            <flux:modal.trigger name="persetujuanizin">
+                            <flux:modal.trigger name="persetujuan">
                                 <flux:spacer />
                                 <flux:button variant="primary" color="green" class="w-[50%]" type="button" >Simpan</flux:button>
                             </flux:modal.trigger>
                             
-                            <flux:modal name="persetujuanizin" class="md:w-96">
+                            <flux:modal name="persetujuan" class="md:w-96">
                                 <div class="space-y-6">
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
@@ -62,7 +60,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="createizin">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" wire:close="persetujuan" type="button" class="w-full">Batal</flux:button>
@@ -77,5 +75,5 @@
             </div>
         </div>
     </div>
-    @include("components.flash-messages")
+    @include('components.flash-messages')
 </div>

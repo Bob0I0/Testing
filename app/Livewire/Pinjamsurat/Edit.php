@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pinjamsurat;
 
+use App\Helpers\Flash;
 use App\Livewire\Forms\FormPinjamSurat;
 use App\Models\PinjamSurat;
 use Livewire\Component;
@@ -26,12 +27,10 @@ class Edit extends Component
     {
         $surat = PinjamSurat::findOrFail($this->pinjamSuratId);
         $this->form->update($surat); 
-
-        session()->flash('message', 'Data berhasil diperbarui.');
         $this->form->reset();
         $this->resetValidation(); 
+        Flash::success("Detail Berhasil diedit");
         $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
-        return redirect()->to('/surat');
 
     }
     public function render()

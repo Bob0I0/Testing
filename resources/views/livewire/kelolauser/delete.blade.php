@@ -9,7 +9,7 @@
             <flux:text variant="strong" class="mt-4 text-center text-base">
                 <p><b class="font-extrabold">Apakah Anda Yakin Ingin</b></p> 
                 <p><b class="font-extrabold">Menghapus Data Surat Ini?</b></p>
-                <p class="text-sm mt-1">Surat dengan nomor <strong>{{ $name }}</strong>
+                <p class="text-sm mt-1">Akun dengan nama <strong>{{ $name }}</strong>
                 <p class="text-sm">akan dihapus. Yakin melanjutkan?</p></p>
             </flux:text>
 
@@ -24,4 +24,5 @@
             </div>
         </div>
     </flux:modal>
+    @include('components.flash-messages')
 </div>

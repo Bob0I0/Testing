@@ -61,7 +61,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="editPS-{{ $pinjamSuratId }}">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                         
                                             <flux:button variant="danger" wire:close="persetujuan_editSM-{{ $pinjamSuratId }}" class="w-full">Batal</flux:button>
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-
+    @include("components.flash-messages")
 </div>
 @script
 <script type="text/javascript">

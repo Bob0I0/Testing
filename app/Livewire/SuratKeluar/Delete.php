@@ -2,6 +2,7 @@
 
 namespace App\Livewire\SuratKeluar;
 
+use App\Helpers\Flash;
 use Livewire\Component;
 use App\Models\SuratKeluar;
 use Illuminate\Support\Facades\Storage;
@@ -34,8 +35,9 @@ class Delete extends Component
             }
         }
 
-        $surat->delete(); // Hapus record dari database
-
+        $surat->delete(); 
+        
+        Flash::success("Surat Berhasil dihapus");
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratKeluar\Show::class); 
 
     }

@@ -24,4 +24,5 @@
             </div>
         </div>
     </flux:modal>
+    @include('components.flash-messages')
 </div>

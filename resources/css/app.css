@@ -36,7 +36,7 @@
     --color-cyan-700: #0ABAB5;
     --color-cyan-900: #003634;
 
-    --color-accent: var(--color-cyan-200);
+    --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
     --icon-color: #292D32;
@@ -77,7 +77,7 @@
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    @apply outline-hidden ring-2 ring-cyan-200 ring-offset-2 ring-offset-accent-foreground;
 }
 
 /* \[:where(&)\]:size-4 {

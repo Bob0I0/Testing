@@ -1,9 +1,9 @@
 <div>
     <!-- Modal toggle -->
-    <flux:button data-modal-target="editUser-{{ $user->id }}" data-modal-toggle="editUser-{{ $user->id }}" icon="edit" variant="subtle"></flux:button>
+    <flux:button data-modal-target="editUser-{{ $userId }}" data-modal-toggle="editUser-{{ $userId }}" icon="edit" variant="subtle"></flux:button>
 
     <!-- Main modal -->
-    <div wire:ignore.self id="editUser-{{ $user->id }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div wire:ignore.self id="editUser-{{ $userId }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -14,7 +14,7 @@
                         <strong>{{ __('Edit Data Pengguna') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="editUser-{{ $user->id }}">
+                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="editUser-{{ $userId }}">
                     </flux:button>
                 </div>
 
@@ -75,13 +75,13 @@
                         </flux:field>
 
                         <!-- Confirmation -->
-                        <div class="flex items-center justify-end">
-                            <flux:modal.trigger name="persetujuan">
+                        <div class="flex">
+                            <flux:modal.trigger name="persetujuanedituser-{{ $userId }}">
                                 <flux:spacer />
                                 <flux:button variant="primary" color="green" class="w-[50%]" type="button">Simpan</flux:button>
                             </flux:modal.trigger>
                             
-                            <flux:modal name="persetujuan" class="md:w-96">
+                            <flux:modal name="persetujuanedituser-{{ $userId }}" class="md:w-96">
                                 <div class="space-y-6">
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
@@ -92,7 +92,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="editUser-{{ $userId }}">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" wire:close="persetujuan" type="button" class="w-full">Batal</flux:button>
@@ -107,5 +107,5 @@
             </div>
         </div>
     </div>
-
+    @include("components.flash-messages")
 </div>

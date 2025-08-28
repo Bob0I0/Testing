@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Kelolauser;
 
+use App\Helpers\Flash;
 use App\Models\User;
 use Livewire\Component;
 
@@ -20,10 +21,7 @@ class Delete extends Component
     {
         $surat = User::findOrFail($this->userId); 
         $surat->delete(); 
-
-        // Berikan pesan sukses ke sesi flash - PASTIKAN PESAN SESUAI DENGAN SuratKeluar
-        // session()->flash('message', 'Surat Keluar dengan nomor ' . $this->nomorSurat . ' berhasil dihapus.');
-
+        Flash::success("User Berhasil dihapus");
         $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
 
     }

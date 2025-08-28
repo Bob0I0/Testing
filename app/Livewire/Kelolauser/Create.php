@@ -28,8 +28,8 @@ class Create extends Component
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
-        Flash::success("berhasil Ditambah");
-        $this->redirect(route('kelola'));
+        Flash::success("User Berhasil Ditambahkan");
+        $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
         
     }
 

@@ -50,7 +50,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="persetujuankembali-{{ $pinjamSuratId }}">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="status-{{ $pinjamSuratId }}">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" type="button" class="w-full">Batal</flux:button>
@@ -64,7 +64,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @script

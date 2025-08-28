@@ -10,38 +10,45 @@
             <table class="table-fixed min-w-[2/3] border border-gray-300 dark:bg-zinc-600 text-sm my-3">
                 <thead class="bg-cyan-900 text-white text-left">
                     <tr class="text-zinc-50">
-                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">No</th>
-                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">Level</th>
-                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">Perizinan</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12 text-center">No</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">Level</th>
+                        <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-160">Perizinan</th>
                         <th class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @forelse ($this->datauser as $key => $user)
-                    <tr class="text-zinc-900 dark:text-zinc-50" wire:key="user-{{ $user->id }}">
-                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">{{ $this->datauser->firstItem() + $key }}</td>
-                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->name }}</td>
-                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->username }}</td>
-                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">Level</td>
-                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
+                    @forelse ($roles as $key => $role)
+                    <tr class="text-zinc-900 dark:text-zinc-50" wire:key="user-{{ $role->id }}">
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-2 w-12 text-center">{{ $roles->firstItem() + $key }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-2 w-30">{{ $role->name }}</td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-2 w-160">
+                            @if ($role->permissions)
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach ($role->permissions as $permission)
+                                        <flux:badge size='sm' color='lime'>{{$permission->name}}</flux:badge>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </td>
+                        <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28"> 
                             <flux:button.group>
-                                <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
-                                <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
+                                <livewire:izin.edit :izin-id="$role->id" :key="'edit-form-'.$role->id" />
+                                <livewire:izin.delete :izin-id="$role->id" :name="$role->name" :key="'delete-'.$role->id" />
                             </flux:button.group>
                         </td>
                     </tr>
-                    @empty --}}
+                    @empty
                     <tr>
                         <td class="border px-3 py-4"></td>
                         <td class="border px-3 py-4"></td>
                         <td class="border px-3 py-4"></td>
                         <td class="border px-3 py-4"></td>
                     </tr>
-                    {{-- @endforelse --}}
+                    @endforelse
                 </tbody>
             </table>
             <div class="mt-5">
-                {{-- {{ $this->datauser->links('vendor.pagination.custom-pagi') }} --}}
+                {{ $roles->links('vendor.pagination.custom-pagi') }}
             </div>
         </div>
     </div>

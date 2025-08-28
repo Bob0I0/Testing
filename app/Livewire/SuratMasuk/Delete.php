@@ -36,6 +36,7 @@ class Delete extends Component
 
         $surat->delete();
 
+        Flash::success("Surat Berhasil dihapus");
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratMasuk\Index::class); 
 
     }

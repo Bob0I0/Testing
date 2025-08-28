@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Kelolauser;
 
+use App\Helpers\Flash;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -9,20 +10,22 @@ use Livewire\Component;
 
 class Edit extends Component
 {
-    public $user, $name, $username, $password, $password_confirmation;
+    public $userId, $user, $name, $username, $password, $password_confirmation;
 
     public function mount($userId) 
     {
-        $this->user = User::findOrFail($userId);
-        $this->name = $this->user->name;
-        $this->username = $this->user->username;
+        $this->userId = $userId;
+        
+        $user = User::findOrFail($this->userId);
+        $this->name = $user->name;
+        $this->username = $user->username;
     }
 
     public function updateacc(): void
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'unique:username,' . $this->user->id],
+            'username' => ['required', 'unique:users,username,' .  $this->userId],
             'password' => ['nullable', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -31,10 +34,10 @@ class Edit extends Component
         } else {
             unset($validated['password']); 
         }
-
-        $this->user->update($validated);
-
-        $this->redirect(route('kelola'));
+        $user = User::findOrFail($this->userId);
+        $user->update($validated);
+        Flash::success("User Berhasil diedit");
+        $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
     }
 
     public function resetForm()

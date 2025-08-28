@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pinjamsurat;
 
+use App\Helpers\Flash;
 use App\Livewire\Forms\FormPinjamSurat;
 use Livewire\Component;
 
@@ -12,11 +13,11 @@ class Create extends Component
     public function simpan(){
 
         $this->form->create();
-        return redirect()->to('/surat');
-        session()->flash('berhasil', 'Data berhasil ditambahkan.');
         $this->form->reset();
         $this->resetValidation();
+        Flash::success("Surat Berhasil Ditambahkan");
         $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
+
     }
     
     public function resetForm()

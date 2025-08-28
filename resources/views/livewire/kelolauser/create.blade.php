@@ -80,12 +80,12 @@
 
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">
-                            <flux:modal.trigger name="persetujuan">
+                            <flux:modal.trigger name="persetujuanuser">
                                 <flux:spacer />
                                 <flux:button variant="primary" color="green" class="w-[50%]" type="button" >Simpan</flux:button>
                             </flux:modal.trigger>
                             
-                            <flux:modal name="persetujuan" class="md:w-96">
+                            <flux:modal name="persetujuanuser" class="md:w-96">
                                 <div class="space-y-6">
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
@@ -96,7 +96,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="createuser">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" wire:close="persetujuan" type="button" class="w-full">Batal</flux:button>
@@ -111,5 +111,5 @@
             </div>
         </div>
     </div>
-
+    @include("components.flash-messages")
 </div>

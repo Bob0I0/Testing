@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pinjamsurat;
 
+use App\Helpers\Flash;
 use App\Livewire\Forms\FormPinjamSurat;
 use App\Models\PinjamSurat;
 use Livewire\Component;
@@ -36,7 +37,7 @@ class Status extends Component
 
         $this->status = 'Selesai';
         $this->resetValidation();
-        return redirect()->to('/surat');
+        $this->dispatch('suratUpdated')->to(\App\Livewire\Pinjamsurat\Index::class);
     }
 
     public function resetForm()
