@@ -25,7 +25,7 @@
                             @if ($role->permissions)
                                 <div class="flex flex-wrap gap-2">
                                     @foreach ($role->permissions as $permission)
-                                        <flux:badge size='sm' color='lime'>{{$permission->name}}</flux:badge>
+                                        <flux:badge size='sm' color='lime'>{{$permission->display_name}}</flux:badge>
                                     @endforeach
                                 </div>
                             @endif

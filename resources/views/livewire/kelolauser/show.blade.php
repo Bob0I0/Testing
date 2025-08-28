@@ -29,7 +29,15 @@
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-12">{{ $this->datauser->firstItem() + $key }}</td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->name }}</td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-80">{{ $user->username }}</td>
-                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">Level</td>
+                            <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-30">
+                                @if ($user->roles)
+                                    <div class="flex flex-wrap gap-2">
+                                        @foreach ($user->roles as $role)
+                                            <flux:badge size='sm' color='lime'>{{$role->name}}</flux:badge>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
                                 <flux:button.group>
                                     <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />

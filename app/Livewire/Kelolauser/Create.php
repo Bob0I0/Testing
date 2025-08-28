@@ -9,13 +9,20 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
 use App\Helpers\Flash;
+use Spatie\Permission\Models\Role;
 
 class Create extends Component
 {
+    public $allroles = [];
     public string $name = '';
     public string $username = '';
     public string $password = '';
     public string $password_confirmation = '';
+
+    public function mount()
+    {
+        $this->allroles=Role::all();
+    }
 
     public function createacc(): void
     {

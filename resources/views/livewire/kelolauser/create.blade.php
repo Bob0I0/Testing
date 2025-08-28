@@ -69,12 +69,15 @@
                                 viewable
                             />
                         </div>
+                        
                         <flux:field>
                             <flux:label>Level</flux:label>
-                            <flux:select wire:model="#" :chevron="false" placeholder="Choose industry...">
-                                <flux:select.option>Photography</flux:select.option>
-                                <flux:select.option>Design services</flux:select.option>
-                                <flux:select.option>Web development</flux:select.option>
+                            <flux:select wire:model="roles" placeholder="Pilih Level..." :chevron="false">
+                                @foreach ($allroles as $role)
+                                    <flux:select.option value="{{ $role->name }}">
+                                        {{ $role->name }}
+                                    </flux:select.option>
+                                @endforeach
                             </flux:select>
                         </flux:field>
 

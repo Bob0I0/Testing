@@ -28,17 +28,18 @@
                         <!-- Name -->
                         <flux:input
                             wire:model="name"
-                            :label="__('Nama Lengkap')"
+                            :label="__('Nama Perizinan')"
                             type="text"
                             required
                             autofocus
                             autocomplete="name"
-                            :placeholder="__('Full name')"
+                            :placeholder="__('Contoh: Admin')"
                         />
                     <flux:checkbox.group wire:model="permissions" label="Perizinan">
+                        <flux:checkbox.all label="Pilih Semua"/>    
                         <div class="grid grid-cols-2 gap-2 mt-2">
                             @foreach ($allpermissions as $permission)
-                                <flux:checkbox label="{{ $permission->name }}" value="{{ $permission->name }}" />
+                                <flux:checkbox label="{{ $permission->display_name ?? $permission->name }}" value="{{ $permission->name }}" />
                             @endforeach
                         </div>
                     </flux:checkbox.group>

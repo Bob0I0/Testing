@@ -7,19 +7,23 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Edit extends Component
 {
     public $userId, $user, $name, $username, $password, $password_confirmation;
+    // public $allroles = [];
 
     public function mount($userId) 
     {
         $this->userId = $userId;
         
         $user = User::findOrFail($this->userId);
+        // $this->allroles=Role::findOrFail($userId);
         $this->name = $user->name;
         $this->username = $user->username;
     }
+    
 
     public function updateacc(): void
     {
