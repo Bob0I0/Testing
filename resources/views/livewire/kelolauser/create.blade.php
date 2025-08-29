@@ -24,7 +24,7 @@
 
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form wire:submit="createacc" class="flex flex-col gap-6">
+                    <form wire:submit="createuser" class="flex flex-col gap-6">
                         <!-- Name -->
                         <flux:input
                             wire:model="name"
@@ -69,8 +69,15 @@
                                 viewable
                             />
                         </div>
-                        
-                        <flux:field>
+                        <flux:checkbox.group wire:model="roles" label="level">
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                @foreach ($allroles as $role)
+                                    <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}" />
+                                @endforeach
+                            </div>
+                        </flux:checkbox.group>
+
+                        {{-- <flux:field>
                             <flux:label>Level</flux:label>
                             <flux:select wire:model="roles" placeholder="Pilih Level..." :chevron="false">
                                 @foreach ($allroles as $role)
@@ -79,7 +86,7 @@
                                     </flux:select.option>
                                 @endforeach
                             </flux:select>
-                        </flux:field>
+                        </flux:field> --}}
 
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">

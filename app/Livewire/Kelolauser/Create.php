@@ -3,8 +3,6 @@
 namespace App\Livewire\Kelolauser;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
@@ -13,32 +11,38 @@ use Spatie\Permission\Models\Role;
 
 class Create extends Component
 {
-    public $allroles = [];
-    public string $name = '';
-    public string $username = '';
-    public string $password = '';
-    public string $password_confirmation = '';
+    public $allroles;
+    public $name;
+    public $username;
+    public $password;
+    public $password_confirmation;
+    public $roles = [];
 
     public function mount()
     {
-        $this->allroles=Role::all();
+        $this->allroles = Role::all();
     }
 
-    public function createacc(): void
+    public function createuser()
     {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'unique:' . User::class],
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'roles' => 'required',
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        $validated['password'] = Hash::make($validated['password']);
-
-        User::create($validated);
+        
+        $user = User::create([
+            'name' => $this->name,
+            'username' => $this->name,
+            'password' => Hash::make($this->password)
+        ]);
+        
+        $user->syncRoles($this->roles);
         Flash::success("User Berhasil Ditambahkan");
         $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
-        
     }
+
 
     public function resetForm()
     {

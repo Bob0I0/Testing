@@ -10,7 +10,9 @@
 
         <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
             <div class="card-body my-3">
+                @can('pinjamsurat.create')
                 <livewire:pinjamsurat.create />
+                @endcan
                 <table class="table-fixed min-w-full border border-gray-300 dark:bg-zinc-600 text-sm my-3">
                     <thead class="bg-cyan-900 text-white text-left">
                         <tr class="text-zinc-50">
@@ -38,8 +40,12 @@
                                 </td>
                                 <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">
                                     <flux:button.group>
+                                        @can('pinjamsurat.edit')
                                         <livewire:pinjamsurat.edit :surat-id="$surat->id" :key="'edit-form-'.$surat->id" />
+                                        @endcan
+                                        @can('pinjamsurat.delete')
                                         <livewire:pinjamsurat.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="'delete-'.$surat->id" />
+                                        @endcan
                                     </flux:button.group>
                                 </td>
                             </tr>

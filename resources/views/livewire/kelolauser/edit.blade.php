@@ -64,16 +64,13 @@
                             />
                         </div>
 
-                        {{-- <flux:field>
-                            <flux:label>Level</flux:label>
-                            <flux:select wire:model="roles" placeholder="Pilih Level..." :chevron="false">
+                        <flux:checkbox.group wire:model="roles" label="level">
+                            <div class="grid grid-cols-2 gap-2 mt-2">
                                 @foreach ($allroles as $role)
-                                    <flux:select.option value="{{ $role->name }}">
-                                        {{ $role->name }}
-                                    </flux:select.option>
+                                    <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}" />
                                 @endforeach
-                            </flux:select>
-                        </flux:field> --}}
+                            </div>
+                        </flux:checkbox.group>
 
                         <!-- Confirmation -->
                         <div class="flex">

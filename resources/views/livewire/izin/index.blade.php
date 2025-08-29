@@ -4,9 +4,9 @@
     </div>
     <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm my-6">
         <div class="card-body my-3">
-
+            @can('izin.create')
             <livewire:izin.create />
-
+            @endcan
             <table class="table-fixed min-w-[2/3] border border-gray-300 dark:bg-zinc-600 text-sm my-3">
                 <thead class="bg-cyan-900 text-white text-left">
                     <tr class="text-zinc-50">
@@ -32,8 +32,12 @@
                         </td>
                         <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28"> 
                             <flux:button.group>
-                                <livewire:izin.edit :izin-id="$role->id" :key="'edit-form-'.$role->id" />
-                                <livewire:izin.delete :izin-id="$role->id" :name="$role->name" :key="'delete-'.$role->id" />
+                                @can('izin.edit')
+                                    <livewire:izin.edit :izin-id="$role->id" :key="'edit-form-'.$role->id" />
+                                @endcan
+                                @can('izin.delete')
+                                    <livewire:izin.delete :izin-id="$role->id" :name="$role->name" :key="'delete-'.$role->id" />
+                                @endcan
                             </flux:button.group>
                         </td>
                     </tr>

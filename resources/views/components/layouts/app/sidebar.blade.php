@@ -34,10 +34,14 @@
                 
                 <flux:separator class="my-1"/>
                 <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" >{{ __('Surat') }}</flux:navlist.item>
+                @if(auth()->user()->can('izin.create') || auth()->user()->can('izin.edit') || auth()->user()->can('izin.delete'))
                 <flux:separator class="my-1"/>
                 <flux:navlist.item icon="finger-print" :href="route('izin')" :current="request()->routeIs('izin')" >{{ __('Perizinan') }}</flux:navlist.item>
+                @endif
+                @if(auth()->user()->can('kelolauser.create') || auth()->user()->can('kelolauser.edit') || auth()->user()->can('kelolauser.delete'))
                 <flux:separator class="my-1"/>
                 <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" >{{ __('Kelola User') }}</flux:navlist.item>
+                @endif
             </flux:navlist>
 
             <flux:spacer />

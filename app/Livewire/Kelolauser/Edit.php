@@ -5,48 +5,63 @@ namespace App\Livewire\Kelolauser;
 use App\Helpers\Flash;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
 class Edit extends Component
 {
-    public $userId, $user, $name, $username, $password, $password_confirmation;
-    // public $allroles = [];
+    public $userId, $user, $name, $username, $password, $password_confirmation, $allroles;
+    public $roles = [];
 
     public function mount($userId) 
     {
         $this->userId = $userId;
         
-        $user = User::findOrFail($this->userId);
-        // $this->allroles=Role::findOrFail($userId);
-        $this->name = $user->name;
-        $this->username = $user->username;
+        $this->user = User::findOrFail($this->userId);
+        $this->name = $this->user->name;
+        $this->username = $this->user->username;
+        $this->allroles = Role::all();
+        $this->roles = $this->user->roles()->pluck("name")->toArray();
     }
     
-
-    public function updateacc(): void
+    public function updateacc()
     {
-        $validated = $this->validate([
+        $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'unique:users,username,' .  $this->userId],
+            'username' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users', 'username')->ignore($this->userId),
+            ],
+            'roles' => ['required', 'array'],
             'password' => ['nullable', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        if (!empty($validated['password'])) {
-            $validated['password'] = Hash::make($validated['password']);
-        } else {
-            unset($validated['password']); 
+        $this->user->name = $this->name;
+        $this->user->username = $this->username;
+        
+        if (!empty($this->password)) {
+            $this->user->password = Hash::make($this->password);
         }
-        $user = User::findOrFail($this->userId);
-        $user->update($validated);
+        
+        $this->user->save();
+
+        $this->user->syncRoles($this->roles);
+
         Flash::success("User Berhasil diedit");
         $this->dispatch('userUpdated')->to(\App\Livewire\Kelolauser\Show::class);
     }
 
     public function resetForm()
     {
-        $this->reset();
+        $this->name = $this->user->name;
+        $this->username = $this->user->username;
+        $this->password = null;
+        $this->password_confirmation = null;
+        $this->roles = $this->user->roles()->pluck("name")->toArray();
 
         $this->resetValidation();
     }

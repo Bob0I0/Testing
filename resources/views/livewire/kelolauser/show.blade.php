@@ -10,9 +10,9 @@
         
         <div class="overflow-x-auto bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
             <div class="card-body my-3">
-
+                @can('kelolauser.create')
                 <livewire:kelolauser.create />
-
+                @endcan
                 <table class="table-fixed min-w-[2/3] border border-gray-300 dark:bg-zinc-600 text-sm my-3">
                     <thead class="bg-cyan-900 text-white text-left">
                         <tr class="text-zinc-50">
@@ -40,8 +40,12 @@
                             </td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
                                 <flux:button.group>
-                                    <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
-                                    <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
+                                    @can('kelolauser.edit')
+                                        <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
+                                    @endcan
+                                    @can('kelolauser.delete')
+                                        <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
+                                    @endcan
                                 </flux:button.group>
                             </td>
                         </tr>

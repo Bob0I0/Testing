@@ -65,7 +65,9 @@
 
     <!-- Table Index -->
     <div class="overflow-x-auto my-3 bg-white dark:bg-zinc-700 p-4 rounded-xl shadow-sm">
+        @can('suratmasuk.create')
         <livewire:surat-masuk.create />
+        @endcan
         <table class="table-fixed min-w-full my-3 border border-gray-300 dark:bg-zinc-600 text-sm">
             <thead class="bg-cyan-900 text-white text-left">
                 <tr class="text-zinc-50">
@@ -89,8 +91,12 @@
                         <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">{{ $surat->jenis_surat }}</td>
                         <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1">
                             <flux:button.group>
+                                    @can('suratmasuk.edit')
                                     <livewire:surat-masuk.edit :surat-id="$surat->id" :key="'edit-form-'.$surat->id" />
+                                        @endcan
+                                        @can('suratmasuk.delete')
                                     <livewire:surat-masuk.delete :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="'delete-'.$surat->id" />
+                                        @endcan
                                     <livewire:surat-masuk.unduh :surat-id="$surat->id" :nomor-surat="$surat->nomor_surat" :key="'unduh-'.$surat->id"/>
                             </flux:button.group>
                         </td>

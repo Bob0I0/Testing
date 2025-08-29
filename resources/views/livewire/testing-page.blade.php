@@ -1,9 +1,5 @@
 <div>
     <flux:button wire:click='plas'>Button</flux:button>
-    
-     {{-- <div class="alert alert-success">
-        {{$value}}
-     </div> --}}
     @session("success")
     <div id="toast" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="z-[9999] fixed top-10 right-10 flex items-center bg-white text-black text-sm font-medium px-4 py-3 rounded-lg shadow-lg border border-gray-300">
         <!-- Success Icon -->
