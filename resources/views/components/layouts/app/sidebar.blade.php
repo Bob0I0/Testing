@@ -13,34 +13,41 @@
             
             <flux:navlist class="w-55">
                 <flux:navlist.item href="/dashboard" icon="home">Dashboard</flux:navlist.item>
-                <flux:separator class="my-1"/>
-                
-                <flux:navlist.group class="my-1" icon="smsfast" heading="Transaksi Surat" expandable :expanded="request()->routeIs('suratmasuk') || request()->routeIs('suratkeluar')">
-                    <flux:navlist.item
-                        href="{{ route('suratmasuk') }}"
-                        :icon="request()->routeIs('suratmasuk') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Surat Masuk
-                    </flux:navlist.item>
-                    <flux:navlist.item
-                        href="{{ route('suratkeluar') }}"
-                        :icon="request()->routeIs('suratkeluar') ? 'doton' : 'dotoff'"
-                        :dot-icon="true"
-                    >
-                        Surat Keluar
-                    </flux:navlist.item>
-                </flux:navlist.group>
-                
-                <flux:separator class="my-1"/>
-                <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" >{{ __('Surat') }}</flux:navlist.item>
+                @if(auth()->user()->can('suratmasuk.create') || auth()->user()->can('suratmasuk.edit') || auth()->user()->can('suratmasuk.delete') ||
+                    auth()->user()->can('suratkeluar.create') || auth()->user()->can('suratkeluar.edit') || auth()->user()->can('suratkeluar.delete'))
+                    <flux:separator class="my-1"/>
+                    <flux:navlist.group class="my-1" icon="smsfast" heading="Transaksi Surat" expandable :expanded="request()->routeIs('suratmasuk') || request()->routeIs('suratkeluar')">
+                    @if(auth()->user()->can('suratmasuk.create') || auth()->user()->can('suratmasuk.edit') || auth()->user()->can('suratmasuk.delete'))
+                        <flux:navlist.item
+                            href="{{ route('suratmasuk') }}"
+                            :icon="request()->routeIs('suratmasuk') ? 'doton' : 'dotoff'"
+                            :dot-icon="true"
+                        >
+                            Surat Masuk
+                        </flux:navlist.item>
+                    @endif
+                    @if(auth()->user()->can('suratkeluar.create') || auth()->user()->can('suratkeluar.edit') || auth()->user()->can('suratkeluar.delete'))
+                        <flux:navlist.item
+                            href="{{ route('suratkeluar') }}"
+                            :icon="request()->routeIs('suratkeluar') ? 'doton' : 'dotoff'"
+                            :dot-icon="true"
+                        >
+                            Surat Keluar
+                        </flux:navlist.item>
+                    @endif
+                    </flux:navlist.group>
+                @endif
+                @if(auth()->user()->can('pinjamsurat.create') || auth()->user()->can('pinjamsurat.edit') || auth()->user()->can('pinjamsurat.delete'))
+                    <flux:separator class="my-1"/>
+                    <flux:navlist.item icon="sms" :href="route('pinjamsurat')" :current="request()->routeIs('pinjamsurat')" >{{ __('Surat') }}</flux:navlist.item>
+                @endif
                 @if(auth()->user()->can('izin.create') || auth()->user()->can('izin.edit') || auth()->user()->can('izin.delete'))
-                <flux:separator class="my-1"/>
-                <flux:navlist.item icon="finger-print" :href="route('izin')" :current="request()->routeIs('izin')" >{{ __('Perizinan') }}</flux:navlist.item>
+                    <flux:separator class="my-1"/>
+                    <flux:navlist.item icon="finger-print" :href="route('izin')" :current="request()->routeIs('izin')" >{{ __('Perizinan') }}</flux:navlist.item>
                 @endif
                 @if(auth()->user()->can('kelolauser.create') || auth()->user()->can('kelolauser.edit') || auth()->user()->can('kelolauser.delete'))
-                <flux:separator class="my-1"/>
-                <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" >{{ __('Kelola User') }}</flux:navlist.item>
+                    <flux:separator class="my-1"/>
+                    <flux:navlist.item icon="edituser" :href="route('kelola')" :current="request()->routeIs('kelola')" >{{ __('Kelola User') }}</flux:navlist.item>
                 @endif
             </flux:navlist>
 

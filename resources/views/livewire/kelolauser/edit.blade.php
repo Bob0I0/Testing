@@ -66,8 +66,8 @@
 
                         <flux:checkbox.group wire:model="roles" label="level">
                             <div class="grid grid-cols-2 gap-2 mt-2">
-                                @foreach ($allroles as $role)
-                                    <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}" />
+                                @foreach ($allroles->where('name', '!=', 'SuperAdmin') as $role)
+                                    <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}"/>
                                 @endforeach
                             </div>
                         </flux:checkbox.group>
