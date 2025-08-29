@@ -77,17 +77,6 @@
                             </div>
                         </flux:checkbox.group>
 
-                        {{-- <flux:field>
-                            <flux:label>Level</flux:label>
-                            <flux:select wire:model="roles" placeholder="Pilih Level..." :chevron="false">
-                                @foreach ($allroles as $role)
-                                    <flux:select.option value="{{ $role->name }}">
-                                        {{ $role->name }}
-                                    </flux:select.option>
-                                @endforeach
-                            </flux:select>
-                        </flux:field> --}}
-
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">
                             <flux:modal.trigger name="persetujuanuser">

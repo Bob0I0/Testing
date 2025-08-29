@@ -32,12 +32,14 @@
                         </td>
                         <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1 w-28"> 
                             <flux:button.group>
-                                @can('izin.edit')
-                                    <livewire:izin.edit :izin-id="$role->id" :key="'edit-form-'.$role->id" />
-                                @endcan
-                                @can('izin.delete')
-                                    <livewire:izin.delete :izin-id="$role->id" :name="$role->name" :key="'delete-'.$role->id" />
-                                @endcan
+                                @if($role->name !== 'SuperAdmin')
+                                    @can('izin.edit')
+                                        <livewire:izin.edit :izin-id="$role->id" :key="'edit-form-'.$role->id" />
+                                    @endcan
+                                    @can('izin.delete')
+                                        <livewire:izin.delete :izin-id="$role->id" :name="$role->name" :key="'delete-'.$role->id" />
+                                    @endcan
+                                @endif
                             </flux:button.group>
                         </td>
                     </tr>

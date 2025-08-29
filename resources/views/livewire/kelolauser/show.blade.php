@@ -40,12 +40,14 @@
                             </td>
                             <td class="border border-zinc-300 dark:border-zinc-400 px-3 py-1"> 
                                 <flux:button.group>
-                                    @can('kelolauser.edit')
-                                        <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
-                                    @endcan
-                                    @can('kelolauser.delete')
-                                        <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
-                                    @endcan
+                                    @if($role->name !== 'SuperAdmin')
+                                        @can('kelolauser.edit')
+                                            <livewire:kelolauser.edit :user-id="$user->id" :key="'edit-form-'.$user->id" />
+                                        @endcan
+                                        @can('kelolauser.delete')
+                                            <livewire:kelolauser.delete :user-id="$user->id" :name="$user->name" :key="'delete-'.$user->id" />
+                                        @endcan
+                                    @endif
                                 </flux:button.group>
                             </td>
                         </tr>
