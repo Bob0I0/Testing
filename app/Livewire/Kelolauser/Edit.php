@@ -18,13 +18,20 @@ class Edit extends Component
     public function mount($userId) 
     {
         $this->userId = $userId;
-        
         $this->user = User::findOrFail($this->userId);
+
         $this->name = $this->user->name;
         $this->username = $this->user->username;
-        $this->allroles = Role::all();
         $this->roles = $this->user->roles()->pluck("name")->toArray();
+
+        // kalau user yang sedang diedit punya role SuperAdmin
+        if ($this->user->hasRole('SuperAdmin')) {
+            $this->allroles = collect([]); // kosong, jadi tidak muncul di Blade
+        } else {
+            $this->allroles = Role::where('name', '!=', 'SuperAdmin')->get();
+        }
     }
+
     
     public function updateacc()
     {

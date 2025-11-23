@@ -6,6 +6,7 @@ use App\Helpers\Flash;
 use App\Livewire\Forms\FormSuratMasuk;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Flux\Flux;
 
 class Create extends Component
 {
@@ -18,6 +19,7 @@ class Create extends Component
         $this->form->create();
         $this->form->reset();
         $this->resetValidation();
+        Flux::modal('createmasuk')->close();
         Flash::success("Surat Berhasil Ditambahkan");
         $this->dispatch('suratUpdated')->to(\App\Livewire\SuratMasuk\Index::class);
     }

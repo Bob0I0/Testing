@@ -35,14 +35,21 @@
                             autocomplete="name"
                             :placeholder="__('Contoh: Admin')"
                         />
-                    <flux:checkbox.group wire:model="permissions" label="Perizinan">
-                        <flux:checkbox.all label="Pilih Semua"/>    
-                        <div class="grid grid-cols-2 gap-2 mt-2">
-                            @foreach ($allpermissions as $permission)
-                                <flux:checkbox label="{{ $permission->display_name ?? $permission->name }}" value="{{ $permission->name }}" />
-                            @endforeach
-                        </div>
-                    </flux:checkbox.group>
+                        <flux:checkbox.group wire:model="permissions" label="Perizinan">
+                            <flux:checkbox.all label="Pilih Semua"/>    
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                @foreach ($allpermissions as $permission)
+                                    @if (Str::startsWith($permission->name, 'izin.') && !auth()->user()->hasRole('SuperAdmin'))
+                                    @else
+                                        <flux:checkbox 
+                                            label="{{ $permission->display_name ?? $permission->name }}" 
+                                            value="{{ $permission->name }}" 
+                                        />
+                                    @endif
+                                @endforeach
+                            </div>
+                        </flux:checkbox.group>
+
 
 
                         <!-- Confirmation -->

@@ -1,4 +1,3 @@
-
 <div class="card flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
     <div class="card-header">
         <div class="grid gap-8 md:grid-cols-3 items-stretch bg-[#EEF9F9] dark:bg-zinc-800">

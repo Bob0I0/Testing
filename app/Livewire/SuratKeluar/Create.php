@@ -6,12 +6,11 @@ use App\Helpers\Flash;
 use App\Livewire\Forms\FormSuratKeluar;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Flux\Flux;
 
 class Create extends Component
 {
     use WithFileUploads;
-    
-    public $showModal = false;
 
     public FormSuratKeluar $form;
     

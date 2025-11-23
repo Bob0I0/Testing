@@ -54,7 +54,7 @@
             <flux:spacer />
         
             <!--Appearance Button -->
-            <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" />
+            {{-- <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle" aria-label="Toggle dark mode" /> --}}
 
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
@@ -90,7 +90,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                            {{ __('Log Out') }}
+                            {{ __('Keluar') }}
                         </flux:menu.item>
                     </form>
                 </flux:menu>
@@ -136,7 +136,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                            {{ __('Log Out') }}
+                            {{ __('Keluar') }}
                         </flux:menu.item>
                     </form>
                 </flux:menu>

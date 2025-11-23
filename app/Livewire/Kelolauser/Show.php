@@ -21,18 +21,20 @@ class Show extends Component
     }
 
     #[Computed]
-    public function datauser(){
-        $query = User::query();
-        return $query
-            ->when($this->search, function($query){
-                $query->where('username', 'like', "%{$this->search}%");
-            })
+    public function datauser()
+    {
+        return User::with('roles')
+            ->when($this->search, fn($q) =>
+                $q->where('username', 'like', "%{$this->search}%")
+            )
             ->latest()
             ->paginate(5);
     }
 
     public function render()
     {
-        return view('livewire.kelolauser.show');
+        return view('livewire.kelolauser.show', [
+            'datauser' => $this->datauser,
+        ]);
     }
 }

@@ -34,9 +34,10 @@
                             :placeholder="__('Full name')"
                         />
                     <flux:checkbox.group wire:model="permissions" label="Perizinan">
+                        <flux:checkbox.all label="Pilih Semua"/>    
                         <div class="grid grid-cols-2 gap-2 mt-2">
                             @foreach ($allpermissions as $permission)
-                                <flux:checkbox label="{{ $permission->name }}" value="{{ $permission->name }}" />
+                                <flux:checkbox label="{{ $permission->display_name ?? $permission->name }}" value="{{ $permission->name }}" />
                             @endforeach
                         </div>
                     </flux:checkbox.group>
@@ -44,12 +45,12 @@
 
                         <!-- Confirmation -->
                         <div class="flex items-center justify-end">
-                            <flux:modal.trigger name="persetujuan">
+                            <flux:modal.trigger name="persetujuaneditizin-{{ $izinId }}">
                                 <flux:spacer />
                                 <flux:button variant="primary" color="green" class="w-[50%]" type="button" >Simpan</flux:button>
                             </flux:modal.trigger>
                             
-                            <flux:modal name="persetujuan" class="md:w-96">
+                            <flux:modal name="persetujuaneditizin-{{ $izinId }}" class="md:w-96">
                                 <div class="space-y-6">
                                     <flux:text variant="strong" class="mt-4 text-center text-base">
                                         <p><b class="font-extrabold">Apakah Data yang Anda</b></p> 
@@ -60,7 +61,7 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <flux:modal.close>
-                                            <flux:button variant="primary" color="green" type="submit" class="w-full">Simpan</flux:button>
+                                            <flux:button variant="primary" color="green" type="submit" class="w-full" data-modal-toggle="editizin-{{ $izinId }}">Simpan</flux:button>
                                         </flux:modal.close>    
                                         <flux:modal.close>                                    
                                             <flux:button variant="danger" wire:close="persetujuan" type="button" class="w-full">Batal</flux:button>

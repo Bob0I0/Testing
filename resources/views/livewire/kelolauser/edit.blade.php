@@ -64,13 +64,15 @@
                             />
                         </div>
 
-                        <flux:checkbox.group wire:model="roles" label="level">
-                            <div class="grid grid-cols-2 gap-2 mt-2">
-                                @foreach ($allroles->where('name', '!=', 'SuperAdmin') as $role)
-                                    <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}"/>
-                                @endforeach
-                            </div>
-                        </flux:checkbox.group>
+                        @if($allroles->isNotEmpty())
+                            <flux:checkbox.group wire:model="roles" label="Level">
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    @foreach ($allroles as $role)
+                                        <flux:checkbox label="{{ $role->name }}" value="{{ $role->name }}" />
+                                    @endforeach
+                                </div>
+                            </flux:checkbox.group>
+                        @endif
 
                         <!-- Confirmation -->
                         <div class="flex">

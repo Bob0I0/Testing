@@ -17,17 +17,17 @@
                         <strong>{{ __('Tambah Data Pengguna') }}</strong>
                     </flux:heading>
 
-                    <flux:button wire:click="resetForm" icon="X" variant="subtle" data-modal-toggle="createuser">
+                    <flux:button wire:click.prevent="resetForm" icon="X" variant="subtle" data-modal-toggle="createuser">
                     </flux:button>
 
                 </div>
 
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form wire:submit="createuser" class="flex flex-col gap-6">
+                    <form wire:submit="createuser" class="space-y-4">
                         <!-- Name -->
                         <flux:input
-                            wire:model="name"
+                            wire:model.blur="name"
                             :label="__('Nama Lengkap')"
                             type="text"
                             required
@@ -35,21 +35,24 @@
                             autocomplete="name"
                             :placeholder="__('Full name')"
                         />
+                        <div>@error('name')<span class="error"></span> @enderror</div>
 
                         <!-- Email Address -->
                         <flux:input
-                            wire:model="username"
+                            wire:model.blur="username"
                             :label="__('Username')"
                             type="text"
                             required
                             autocomplete="username"
                             placeholder="Username"
                         />
+                        <div>@error('username') <span class="error"></span> @enderror</div>
                         
                         <div class="grid grid-cols-2 gap-4">
                             <!-- Password -->
+                            <div class="flex flex-col gap-1">
                             <flux:input
-                                wire:model="password"
+                                wire:model.blur="password"
                                 :label="__('Password')"
                                 type="password"
                                 required
@@ -57,10 +60,13 @@
                                 :placeholder="__('Password')"
                                 viewable
                             />
+                            <div>@error('password') <span class="error"></span> @enderror</div>
+                            </div>
 
                             <!-- Confirm Password -->
+                            <div class="flex flex-col gap-1">
                             <flux:input
-                                wire:model="password_confirmation"
+                                wire:model.blur="password_confirmation"
                                 :label="__('konfirmasi password')"
                                 type="password"
                                 required
@@ -68,7 +74,10 @@
                                 :placeholder="__('konfirmasi password')"
                                 viewable
                             />
+                            <div>@error('password_confirmation') <span class="error"></span> @enderror</div>
+                            </div>
                         </div>
+
                         <flux:checkbox.group wire:model="roles" label="level">
                             <div class="grid grid-cols-2 gap-2 mt-2">
                                 @foreach ($allroles->where('name', '!=', 'SuperAdmin') as $role)
