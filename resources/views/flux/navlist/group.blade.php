@@ -2,6 +2,7 @@
     'expandable' => false,
     'expanded' => true,
     'heading' => null,
+    'icon' => null,
 ])
 
 <?php if ($expandable && $heading): ?>
@@ -13,19 +14,22 @@
 >
     <button
         type="button"
-        class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg text-zinc-500 hover:bg-zinc-800/5 hover:text-zinc-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white"
+        class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg ps-3 text-zinc-600 hover:bg-zinc-800/5 hover:text-zinc-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white"
     >
-        <div class="ps-3 pe-4">
+
+        @if($icon)
+            <flux:icon :name="$icon" class="w-4 h-4 me-3 shrink-0" />
+        @endif
+        <span class="text-sm font-medium leading-none flex-1 text-start">{{ $heading }}</span>
+        <div class="pe-4 flex items-center">
             <flux:icon.chevron-down class="hidden size-3! group-data-open/disclosure-button:block" />
             <flux:icon.chevron-right class="block size-3! group-data-open/disclosure-button:hidden" />
         </div>
-
-        <span class="text-sm font-medium leading-none">{{ $heading }}</span>
     </button>
 
-    <div class="relative hidden space-y-[2px] ps-7 data-open:block" @if ($expanded === true) data-open @endif>
-        <div class="absolute inset-y-[3px] start-0 ms-4 w-px bg-zinc-200 dark:bg-white/30"></div>
-
+    <div class="relative hidden space-y-[2px] data-open:block" @if ($expanded === true) data-open @endif>
+        <div class="absolute start-0 top-[1.2rem] ms-4 flex items-center justify-center">
+        </div>
         {{ $slot }}
     </div>
 </ui-disclosure>
@@ -34,7 +38,7 @@
 
 <div {{ $attributes->class('block space-y-[2px]') }}>
     <div class="px-1 py-2">
-        <div class="text-xs leading-none text-zinc-400">{{ $heading }}</div>
+        <div class="text-xs leading-none text-zinc-400 ">{{ $heading }}</div>
     </div>
 
     <div>
